@@ -569,7 +569,6 @@
 
         /* Filter Buttons */
         .filter-btn {
-            font-size: 13px;
             padding: 8px 16px;
             border: 2px solid #e0e0e0;
             border-radius: 20px;
@@ -4534,9 +4533,9 @@
                     {
                         name: 'Zoom H5',
                         price: '€280-320',
-                        features: ['4 tracce simultanee', 'Capsule intercambiabili X/Y incluse', 'Phantom power 48V', 'Registrazione fino a 96kHz/24bit'],
+                        features: ['4 tracce simultanee', 'Capsule intercambiabili incluse', 'Phantom power 48V', 'Registrazione fino a 96kHz/24bit'],
                         link: 'https://www.thomann.de/it/zoom_h5.htm'
-                    },
+                    }
                 ],
                 professional: [
                     {
@@ -4554,25 +4553,25 @@
                         review: 'Il Zoom F3 è una rivoluzione nel field recording compatto. Il 32-bit float elimina completamente il problema del clipping, permettendoti di concentrarti sulla composizione senza preoccuparti dei livelli. Perfetto per chi registra eventi imprevedibili (natura, città). Unico limite: solo 2 canali.'
                     },
                     {
+                        name: 'Tascam Portacapture X8',
+                        price: '€450-550',
+                        features: ['32-bit float/192kHz', '4 capsule intercambiabili', 'Touchscreen intuitivo', 'Audio studio-quality'],
+                        link: 'https://www.thomann.de/it/tascam_portacapture_x8.htm',
+                        review: 'Il Portacapture X8 è la scelta perfetta per chi vuole flessibilità. Le 4 capsule intercambiabili (X/Y, A/B, shotgun, ecc.) ti permettono di adattarti a ogni situazione senza portare microfoni esterni. Il touchscreen rende l\'editing sul campo velocissimo. Unico limite: batterie proprietarie.'
+                    },
+                    {
                         name: 'Sound Devices MixPre-3 II',
                         price: '€650-750',
                         features: ['3 input Kashmir preamps', '32-bit float recording', 'Limitatore trasparente', 'Build quality professionale'],
                         link: 'https://www.thomann.de/it/sound_devices_mixpre_3_ii.htm',
                         review: 'I preamp Kashmir di Sound Devices sono considerati tra i migliori al mondo. Il MixPre-3 II offre qualità broadcast in un package compatto. Ideale per registrazioni critiche dove la qualità è tutto. Costoso ma vale ogni euro se lavori professionalmente.'
-                    },,
-                    {
-                        name: 'Tascam Portacapture X8',
-                        price: '€450-550',
-                        features: ['32-bit float/192kHz', '4 capsule intercambiabili', 'Touchscreen intuitivo', 'Audio studio-quality'],
-                        link: 'https://www.thomann.de/it/tascam_portacapture_x8.htm',
-                        review: 'Il Portacapture X8 è la scelta perfetta per chi vuole flessibilità. Le 4 capsule intercambiabili (X/Y, A/B, shotgun, ecc.) ti permettono di adattarti a ogni situazione senza portare microfoni esterni. Il touchscreen rende l'editing sul campo velocissimo. Unico limite: batterie proprietarie.'
                     },
                     {
                         name: 'Sound Devices MixPre-6 II',
                         price: '€850-1000',
                         features: ['Kashmir preamps leggendari', '32-bit float recording', 'Timecode per sync video', 'Build quality broadcast'],
                         link: 'https://www.thomann.de/it/sound_devices_mixpre_6_ii.htm',
-                        review: 'Sound Devices è sinonimo di broadcast quality. Il MixPre-6 II con i preamp Kashmir offre il suono più trasparente e musicale che puoi ottenere in un field recorder. Timecode, limitatori trasparenti, build indistruttibile. È l'investimento definitivo se lavori su documentari o produzioni audio professionali.'
+                        review: 'Sound Devices è sinonimo di broadcast quality. Il MixPre-6 II con i preamp Kashmir offre il suono più trasparente e musicale che puoi ottenere in un field recorder. Timecode, limitatori trasparenti, build indistruttibile. È l\'investimento definitivo se lavori su documentari o produzioni audio professionali.'
                     }
                 ]
             },
@@ -4624,8 +4623,8 @@
                         price: '€700-800',
                         features: ['Omnidirezionale miniatura', 'Self-noise 23dB-A', 'Montaggio discreto', 'SPL 134dB'],
                         link: 'https://www.thomann.de/it/dpa_4060.htm',
-                        review: 'I DPA 4060 sono i lavalier preferiti dai field recordist professionisti. Omnidirezionali con risposta in frequenza lineare, si "nascondono" ovunque (alberi, muri, abbigliamento) catturando l'ambiente naturale senza colorazione. Costosi ma insostituibili per tecniche creative.'
-                    },,
+                        review: 'I DPA 4060 sono i lavalier preferiti dai field recordist professionisti. Omnidirezionali con risposta in frequenza lineare, si "nascondono" ovunque (alberi, muri, abbigliamento) catturando l\'ambiente naturale senza colorazione. Costosi ma insostituibili per tecniche creative.'
+                    },
                     {
                         name: 'Sennheiser MKH 8070',
                         price: '€1400-1700',
@@ -5253,7 +5252,7 @@
                             <span class="category-badge" style="background: #d32f2f;">PROFESSIONAL</span>
                             <h4>${item.name}</h4>
                             <div class="price">${item.price}</div>
-                            ${item.review ? `<div style="background: #f8f9f5; padding: 12px; border-left: 3px solid #d32f2f; margin: 10px 0; border-radius: 4px;"><p style="margin: 0; font-size: 13px; color: #555; line-height: 1.6; font-style: italic;">"${item.review}"</p></div>` : ''}
+                            ${item.review ? `<div style="background: #fff8f0; padding: 12px; border-left: 3px solid #d32f2f; margin: 10px 0; border-radius: 4px;"><p style="margin: 0; font-size: 13px; color: #555; line-height: 1.6; font-style: italic;">"${item.review}"</p></div>` : ''}
                             <ul>
                                 ${item.features.map(f => '<li>' + f + '</li>').join('')}
                             </ul>
