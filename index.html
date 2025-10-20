@@ -702,6 +702,7 @@
         <button class="nav-button" onclick="showMapSection()">🗺️ Soundscape Map</button>
         <button class="nav-button" onclick="showSection('toolkit')">🔧 Toolkit</button>
         <button class="nav-button" onclick="showSection('library')">📚 Biblioteca</button>
+        <button class="nav-button" onclick="showSection('guide')">📖 Guida</button>
     </div>
 
     <!-- Container -->
@@ -955,6 +956,383 @@
             <!-- Tab Content -->
             <div id="library-content">
                 <!-- Content will be loaded by JavaScript -->
+            </div>
+
+            <!-- Footer -->
+            <div class="section-footer">
+                <div class="footer-buttons">
+                    <a href="https://wa.me/?text=Dai%20un'occhiata%20a%20Soundscape%20Studio!%20Un%20toolkit%20completo%20per%20field%20recording%20e%20composizione%20sonora%20🎧%20https://soundscape-project-studio.netlify.app" class="footer-btn whatsapp" target="_blank">
+                        📱 Condividi su WhatsApp
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://soundscape-project-studio.netlify.app" class="footer-btn facebook" target="_blank">
+                        📘 Condividi su Facebook
+                    </a>
+                    <a href="https://www.paypal.com/paypalme/francescomariano" class="footer-btn paypal" target="_blank">
+                        💰 Sostieni con Donazione
+                    </a>
+                    <a href="mailto:artistmentalhealth@gmail.com?subject=Feedback%20Soundscape%20Studio" class="footer-btn feedback">
+                        ✉️ Invia Feedback
+                    </a>
+                </div>
+                <div class="footer-credits">
+                    <p><strong>Ideato e sviluppato da Francesco Mariano</strong></p>
+                    <p>Gruppo Apuano Sperimentale</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- GUIDE SECTION -->
+        <div id="guide" class="section">
+            <h2 style="margin-bottom: 30px; color: #2d5f4f; text-align: center;">📖 Guida Completa a Soundscape Studio</h2>
+
+            <!-- Introduzione al Progetto -->
+            <div class="card" style="margin-bottom: 30px; background: linear-gradient(135deg, #f0f7f4 0%, #e8f5f1 100%); border-left: 5px solid #2d5f4f;">
+                <h3 style="color: #2d5f4f; margin-bottom: 20px; font-size: 22px;">🎯 Il Progetto</h3>
+
+                <p style="font-size: 16px; line-height: 1.8; color: #2c3e50; margin-bottom: 20px;">
+                    <strong>Soundscape Studio</strong> fa parte di un più ampio progetto di <strong>ricerca e sviluppo di applicazioni didattiche per artisti e musicisti</strong>,
+                    ideato da <strong>Francesco Mariano</strong> del <strong>Gruppo Apuano Sperimentale</strong>.
+                </p>
+
+                <p style="font-size: 16px; line-height: 1.8; color: #2c3e50; margin-bottom: 20px;">
+                    Questo progetto nasce dall'esigenza di fornire strumenti professionali e accessibili per supportare la crescita artistica e tecnica
+                    di musicisti, sound designer, compositori e sound artist. L'obiettivo è democratizzare l'accesso a competenze avanzate attraverso
+                    piattaforme digitali interattive che combinano teoria, pratica ed esperienza sul campo.
+                </p>
+
+                <!-- Presentazione Francesco Mariano -->
+                <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #4a9d7f;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 15px;">👤 Francesco Mariano</h4>
+                    <p style="font-size: 15px; line-height: 1.8; color: #2c3e50; margin-bottom: 15px;">
+                        La mia ricerca artistica si concentra sulla <strong>composizione elettroacustica</strong>, <strong>installazioni sonore interattive</strong>,
+                        <strong>soundscape composition</strong> e <strong>ambienti audio immersivi</strong> attraverso programmazione <strong>Max/MSP Jitter</strong>,
+                        <strong>TouchDesigner</strong> e sviluppo di applicazioni e software interattivo in ambito artistico.
+                    </p>
+                    <p style="font-size: 15px; line-height: 1.8; color: #2c3e50;">
+                        <strong>Docente di Interaction Design</strong> presso l'<strong>Accademia di Belle Arti di Macerata</strong> e l'<strong>Accademia di Belle Arti di Catania</strong>.
+                    </p>
+                </div>
+
+                <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 15px;">🌟 Filosofia del Progetto</h4>
+                    <ul style="line-height: 2; color: #2c3e50; font-size: 15px;">
+                        <li><strong>Apprendimento Attivo</strong>: Non solo teoria, ma esercizi pratici guidati</li>
+                        <li><strong>Accessibilità</strong>: Gratuito e open, per abbattere le barriere economiche</li>
+                        <li><strong>Professionalità</strong>: Standard professionali, attrezzature reali, workflow consolidati</li>
+                        <li><strong>Comunità</strong>: Condivisione di esperienze, registrazioni e scoperte</li>
+                        <li><strong>Innovazione</strong>: Uso di tecnologie moderne (IndexedDB, Web Audio API, GeoLocalizzazione)</li>
+                    </ul>
+                </div>
+
+                <div style="background: #fffbe6; padding: 20px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #f4a261;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 15px;">🚀 Roadmap Futura</h4>
+                    <p style="color: #2c3e50; line-height: 1.8; font-size: 15px;">
+                        Soundscape Studio è il primo di una serie di strumenti didattici dedicati a diverse discipline musicali e artistiche.
+                        In futuro verranno sviluppate applicazioni per composizione, teoria musicale, sound design, produzione audio,
+                        analisi acustica e molto altro.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Cos'è il Soundscape -->
+            <div class="card" style="margin-bottom: 30px;">
+                <h3 style="color: #2d5f4f; margin-bottom: 20px; font-size: 22px;">🎧 Cos'è il Soundscape?</h3>
+
+                <p style="font-size: 16px; line-height: 1.8; color: #2c3e50; margin-bottom: 20px;">
+                    Il termine <strong>soundscape</strong> (paesaggio sonoro) fu coniato dal compositore e teorico canadese <strong>R. Murray Schafer</strong>
+                    negli anni '70, come parte del suo rivoluzionario progetto <em>World Soundscape Project</em>.
+                </p>
+
+                <p style="font-size: 16px; line-height: 1.8; color: #2c3e50; margin-bottom: 20px;">
+                    Un soundscape è l'insieme di tutti i suoni presenti in un ambiente specifico: naturali (vento, pioggia, animali),
+                    umani (voci, traffico, macchine) e architettonici (riverberi, riflessioni). Non è solo "registrazione ambientale",
+                    ma un approccio consapevole all'<strong>ascolto profondo</strong> e alla <strong>composizione con suoni reali</strong>.
+                </p>
+
+                <div style="background: #f8f9f5; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 15px;">📚 Concetti Fondamentali di Schafer</h4>
+                    <ul style="line-height: 2; color: #2c3e50; font-size: 15px;">
+                        <li><strong>Keynote Sounds</strong>: Suoni di fondo costanti (vento, traffico lontano, mare)</li>
+                        <li><strong>Signal Sounds</strong>: Suoni in primo piano che emergono (campanile, sirena, uccello)</li>
+                        <li><strong>Soundmark</strong>: Suoni caratteristici di un luogo (come un "landmark" visivo)</li>
+                        <li><strong>Hi-Fi vs Lo-Fi</strong>: Ambienti sonori puliti vs rumorosi/confusi</li>
+                        <li><strong>Schizofonia</strong>: Separazione del suono dalla sua fonte originale (es. registrazioni)</li>
+                    </ul>
+                </div>
+
+                <div style="background: #e8f5f1; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 15px;">🎼 Applicazioni del Field Recording</h4>
+                    <ul style="line-height: 2; color: #2c3e50; font-size: 15px;">
+                        <li><strong>Musica Concreta</strong>: Composizione con suoni concreti (Pierre Schaeffer, Pierre Henry)</li>
+                        <li><strong>Sound Art</strong>: Installazioni sonore, sculture acustiche</li>
+                        <li><strong>Sound Design</strong>: Cinema, videogiochi, teatro</li>
+                        <li><strong>Documentazione Acustica</strong>: Archivi sonori, ricerca antropologica</li>
+                        <li><strong>Ecologia Acustica</strong>: Studio ambienti naturali, bioacustica</li>
+                        <li><strong>Mindfulness Sonora</strong>: Deep listening, meditation, terapia del suono</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Spiegazione Sezioni -->
+            <div class="card" style="margin-bottom: 30px;">
+                <h3 style="color: #2d5f4f; margin-bottom: 25px; font-size: 22px;">🧭 Come Usare Soundscape Studio</h3>
+
+                <!-- Dashboard -->
+                <div style="background: #f8f9f5; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #2d5f4f;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 12px; font-size: 18px;">🏠 Dashboard</h4>
+                    <p style="font-size: 15px; line-height: 1.8; color: #2c3e50; margin-bottom: 12px;">
+                        La tua <strong>home base</strong>. Qui trovi:
+                    </p>
+                    <ul style="line-height: 1.8; color: #2c3e50; font-size: 15px; margin-left: 20px;">
+                        <li><strong>Esercizi Completati</strong>: Storico dei tuoi esercizi salvati con audio, foto e note</li>
+                        <li><strong>Accessi Rapidi</strong>: Shortcut alle sezioni principali (Esercizi, Toolkit, Map, Biblioteca)</li>
+                        <li><strong>Panoramica Attività</strong>: Visualizza i tuoi progressi nel field recording</li>
+                    </ul>
+                    <p style="font-size: 14px; color: #666; margin-top: 12px; font-style: italic;">
+                        💡 Suggerimento: Torna qui dopo ogni sessione per rivedere il tuo lavoro!
+                    </p>
+                </div>
+
+                <!-- Esercizi -->
+                <div style="background: #fff8f0; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #d32f2f;">
+                    <h4 style="color: #d32f2f; margin-bottom: 12px; font-size: 18px;">🔔 Esercizi Soundscape</h4>
+                    <p style="font-size: 15px; line-height: 1.8; color: #2c3e50; margin-bottom: 12px;">
+                        Il <strong>cuore del toolkit</strong>. 96 esercizi professionali divisi in 12 categorie:
+                    </p>
+                    <ul style="line-height: 1.8; color: #2c3e50; font-size: 15px; margin-left: 20px;">
+                        <li><strong>Traffico Urbano</strong>: Auto, moto, bus, ingorghi</li>
+                        <li><strong>Mercati</strong>: Voci, venditori, atmosfere commerciali</li>
+                        <li><strong>Natura</strong>: Boschi, uccelli, pioggia, vento</li>
+                        <li><strong>Costa</strong>: Mare, onde, porti, spiagge</li>
+                        <li><strong>Ferrovie</strong>: Treni, stazioni, passaggi a livello</li>
+                        <li><strong>Industria</strong>: Fabbriche, macchinari, cantieri</li>
+                        <li><strong>Parchi Urbani</strong>: Città e natura combinati</li>
+                        <li><strong>Voci/Folla</strong>: Manifestazioni, eventi, conversazioni</li>
+                        <li><strong>Cantieri</strong>: Costruzioni, demolizioni, lavori stradali</li>
+                        <li><strong>Aeroporti</strong>: Aerei, terminal, annunci</li>
+                        <li><strong>Interni Pubblici</strong>: Musei, biblioteche, stazioni metro</li>
+                        <li><strong>Eventi Speciali</strong>: Festival, concerti, celebrazioni</li>
+                    </ul>
+                    <p style="font-size: 14px; color: #666; margin-top: 12px; font-style: italic;">
+                        💡 Come funziona:
+                    </p>
+                    <ol style="line-height: 1.8; color: #2c3e50; font-size: 14px; margin-left: 20px; margin-top: 8px;">
+                        <li>Filtra per categoria o livello di difficoltà</li>
+                        <li>Leggi brief, obiettivi, setup consigliato</li>
+                        <li>Vai sul campo e registra</li>
+                        <li>Torna nell'app e clicca "Inizia Esercizio"</li>
+                        <li>Carica audio, foto, note, risposte alle domande guida</li>
+                        <li>Salva tutto in locale (IndexedDB) - nessun account richiesto!</li>
+                    </ol>
+                </div>
+
+                <!-- Soundscape Map -->
+                <div style="background: #e8f5f1; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #4a9d7f;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 12px; font-size: 18px;">🗺️ Soundscape Map</h4>
+                    <p style="font-size: 15px; line-height: 1.8; color: #2c3e50; margin-bottom: 12px;">
+                        Una <strong>mappa interattiva</strong> per documentare i tuoi soundscape:
+                    </p>
+                    <ul style="line-height: 1.8; color: #2c3e50; font-size: 15px; margin-left: 20px;">
+                        <li><strong>Geolocalizza</strong>: Clicca sulla mappa per aggiungere marker</li>
+                        <li><strong>Categorizza</strong>: Traffico, mercato, natura, industriale, ecc.</li>
+                        <li><strong>Registra o Carica</strong>: Aggiungi audio direttamente dal microfono o da file</li>
+                        <li><strong>Annota</strong>: Descrivi il soundscape, orario, condizioni meteo</li>
+                        <li><strong>Riproduci</strong>: Clicca sui marker per ascoltare le tue registrazioni</li>
+                    </ul>
+                    <p style="font-size: 14px; color: #666; margin-top: 12px; font-style: italic;">
+                        💡 Usa la Map per costruire un <strong>archivio personale geolocalizzato</strong> delle tue registrazioni.
+                        Perfetto per progetti di documentazione acustica urbana o naturale.
+                    </p>
+                </div>
+
+                <!-- Toolkit -->
+                <div style="background: #fff4f0; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #ff6b35;">
+                    <h4 style="color: #d32f2f; margin-bottom: 12px; font-size: 18px;">🔧 Toolkit</h4>
+                    <p style="font-size: 15px; line-height: 1.8; color: #2c3e50; margin-bottom: 12px;">
+                        Una <strong>guida all'attrezzatura</strong> per field recording. Diviso in 3 livelli:
+                    </p>
+                    <ul style="line-height: 1.8; color: #2c3e50; font-size: 15px; margin-left: 20px;">
+                        <li><strong>🟢 Budget (€50-200)</strong>: Smartphone + app, registratori entry-level (Zoom H1n)</li>
+                        <li><strong>🟡 Intermediate (€200-1000)</strong>: Zoom H5/F3, microfoni shotgun, accessori</li>
+                        <li><strong>🔴 Professional (€1000+)</strong>: Zoom F6, Sound Devices, microfoni Sennheiser/Rode professionali</li>
+                    </ul>
+                    <p style="font-size: 15px; line-height: 1.8; color: #2c3e50; margin-top: 12px;">
+                        Ogni prodotto include:
+                    </p>
+                    <ul style="line-height: 1.8; color: #2c3e50; font-size: 14px; margin-left: 20px;">
+                        <li>📄 <strong>Review professionale</strong>: Pro, contro, casi d'uso ideali</li>
+                        <li>🛒 <strong>Link acquisto</strong>: Thomann (audio hardware) o Amazon (accessori/libri)</li>
+                        <li>💰 <strong>Range di prezzo</strong>: Stima aggiornata</li>
+                        <li>⚙️ <strong>Specifiche chiave</strong>: Risoluzione, canali, autonomia, peso</li>
+                    </ul>
+                    <p style="font-size: 14px; color: #666; margin-top: 12px; font-style: italic;">
+                        💡 Non devi comprare tutto! Inizia con Budget, sperimenta, poi investi in base alle tue esigenze.
+                    </p>
+                </div>
+
+                <!-- Biblioteca -->
+                <div style="background: #f0f4ff; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #5b7cff;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 12px; font-size: 18px;">📚 Biblioteca</h4>
+                    <p style="font-size: 15px; line-height: 1.8; color: #2c3e50; margin-bottom: 12px;">
+                        Risorse curate per approfondire teoria e pratica:
+                    </p>
+                    <ul style="line-height: 1.8; color: #2c3e50; font-size: 15px; margin-left: 20px;">
+                        <li><strong>📕 Libri Essenziali</strong>: Schafer, Krause, Watson, Oliveros - i classici del field recording</li>
+                        <li><strong>🎬 Video & Documentari</strong>: Tutorial, interviste, documentari sul soundscape</li>
+                        <li><strong>🎧 Esempi Audio</strong>: Registrazioni iconiche da studiare (Bernie Krause, Chris Watson)</li>
+                        <li><strong>📄 Paper & Articoli</strong>: Ricerche accademiche su ecologia acustica, sound studies</li>
+                        <li><strong>🔗 Risorse Online</strong>: Archivi sonori, community, forum, database</li>
+                    </ul>
+                    <p style="font-size: 14px; color: #666; margin-top: 12px; font-style: italic;">
+                        💡 I link Amazon nella Biblioteca includono il tag affiliato <code>soundscapestu-21</code> - se acquisti da lì,
+                        supporti lo sviluppo di questo progetto senza costi aggiuntivi!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tips & Best Practices -->
+            <div class="card" style="margin-bottom: 30px; background: #fffbe6; border-left: 5px solid #f4a261;">
+                <h3 style="color: #2d5f4f; margin-bottom: 20px; font-size: 22px;">💡 Tips & Best Practices</h3>
+
+                <div style="margin-bottom: 20px;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 10px; font-size: 16px;">🎤 Durante la Registrazione</h4>
+                    <ul style="line-height: 1.8; color: #2c3e50; font-size: 15px; margin-left: 20px;">
+                        <li>Usa sempre le <strong>cuffie</strong> per monitorare in tempo reale</li>
+                        <li>Controlla i livelli: evita clipping (LED rossi), ma non registrare troppo basso</li>
+                        <li>Registra almeno <strong>2-3 minuti</strong> per ogni soundscape (serve materiale per editing)</li>
+                        <li>Fai più take dello stesso luogo (mattina vs sera, giorno feriale vs weekend)</li>
+                        <li>Sperimenta angolazioni diverse: stereo XY, MS, spaced pair</li>
+                        <li>Annota tutto: ora, meteo, eventi speciali, problemi tecnici</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 10px; font-size: 16px;">📝 Documentazione</h4>
+                    <ul style="line-height: 1.8; color: #2c3e50; font-size: 15px; margin-left: 20px;">
+                        <li>Scatta <strong>foto del setup</strong>: microfono, posizione, ambiente</li>
+                        <li>Segna coordinate GPS precise (usa la Map!)</li>
+                        <li>Descrivi dettagliatamente: "Piazza del mercato, sabato mattina 9:30, soleggiato, 50 persone circa"</li>
+                        <li>Salva metadati tecnici: gain, sample rate, tipo di microfono</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 10px; font-size: 16px;">🔒 Privacy & Legale</h4>
+                    <ul style="line-height: 1.8; color: #2c3e50; font-size: 15px; margin-left: 20px;">
+                        <li>In Italia, registrare in <strong>spazi pubblici</strong> è generalmente legale (no aspettativa di privacy)</li>
+                        <li>Evita conversazioni private riconoscibili (GDPR)</li>
+                        <li>Chiedi permessi per spazi privati (musei, negozi, ristoranti)</li>
+                        <li>Se pubblichi online, considera rilascio Creative Commons</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="color: #2d5f4f; margin-bottom: 10px; font-size: 16px;">🎓 Workflow Consigliato</h4>
+                    <ol style="line-height: 1.8; color: #2c3e50; font-size: 15px; margin-left: 20px;">
+                        <li>Scegli 1-2 esercizi dalla sezione <strong>Esercizi</strong></li>
+                        <li>Studia il brief e prepara attrezzatura (vedi <strong>Toolkit</strong>)</li>
+                        <li>Vai sul campo e registra (usa <strong>Soundscape Map</strong> per geolocalizzare)</li>
+                        <li>Torna a casa, completa l'esercizio nell'app (carica audio, foto, note)</li>
+                        <li>Ascolta in back, analizza con le domande guida dell'esercizio</li>
+                        <li>Approfondisci leggendo risorse dalla <strong>Biblioteca</strong></li>
+                        <li>Ripeti! La pratica costante è fondamentale</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="card" style="margin-bottom: 30px;">
+                <h3 style="color: #2d5f4f; margin-bottom: 20px; font-size: 22px;">❓ FAQ - Domande Frequenti</h3>
+
+                <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 2px solid #e8f5f1;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 8px; font-size: 16px;">Dove vengono salvati i miei dati?</h4>
+                    <p style="font-size: 15px; line-height: 1.8; color: #2c3e50;">
+                        Tutto in <strong>locale sul tuo browser</strong> (IndexedDB). Non c'è nessun server, nessun account, nessun upload.
+                        I tuoi audio, foto, esercizi restano privati sul tuo dispositivo.
+                        <strong>⚠️ Attenzione</strong>: Se cancelli i dati del browser, perdi tutto! Usa la funzione "Esporta" per backup.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 2px solid #e8f5f1;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 8px; font-size: 16px;">Posso usare Soundscape Studio da mobile?</h4>
+                    <p style="font-size: 15px; line-height: 1.8; color: #2c3e50;">
+                        Sì! Il sito è responsive. La registrazione audio funziona su browser mobile (Chrome, Safari).
+                        La geolocalizzazione funziona perfettamente su smartphone. In futuro è prevista un'app iOS nativa dedicata.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 2px solid #e8f5f1;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 8px; font-size: 16px;">È davvero gratis?</h4>
+                    <p style="font-size: 15px; line-height: 1.8; color: #2c3e50;">
+                        Sì, <strong>100% gratuito</strong>. Nessun paywall, nessun abbonamento.
+                        Il progetto si sostiene tramite <strong>link affiliati</strong> (Thomann, Amazon) e donazioni PayPal volontarie.
+                        Se trovi utile questo toolkit, considera di acquistare attrezzatura dai link forniti o fare una piccola donazione!
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 2px solid #e8f5f1;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 8px; font-size: 16px;">Posso contribuire al progetto?</h4>
+                    <p style="font-size: 15px; line-height: 1.8; color: #2c3e50;">
+                        Assolutamente! Puoi:
+                    </p>
+                    <ul style="line-height: 1.8; color: #2c3e50; font-size: 15px; margin-left: 20px; margin-top: 8px;">
+                        <li>📧 Inviare feedback e suggerimenti via email</li>
+                        <li>🎧 Condividere il progetto con altri sound recordist</li>
+                        <li>💰 Fare una donazione PayPal</li>
+                        <li>🛒 Acquistare attrezzatura dai link affiliati</li>
+                        <li>📝 Segnalare bug o proporre nuovi esercizi</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 2px solid #e8f5f1;">
+                    <h4 style="color: #2d5f4f; margin-bottom: 8px; font-size: 16px;">Quanto spazio occupa sul browser?</h4>
+                    <p style="font-size: 15px; line-height: 1.8; color: #2c3e50;">
+                        Dipende da quanti esercizi completi. Un esercizio con 5 audio (2-3 min ciascuno) e 3 foto occupa circa 20-50 MB.
+                        La maggior parte dei browser moderni permette diversi GB di storage IndexedDB.
+                        Puoi monitorare lo spazio nelle impostazioni del browser.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 style="color: #2d5f4f; margin-bottom: 8px; font-size: 16px;">Posso condividere le mie registrazioni?</h4>
+                    <p style="font-size: 15px; line-height: 1.8; color: #2c3e50;">
+                        Al momento non c'è una funzione di sharing integrata (tutto è locale).
+                        Puoi esportare i tuoi esercizi come file e condividerli manualmente.
+                        In futuro potrebbe essere aggiunta una community/gallery opzionale.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Contatti & Supporto -->
+            <div class="card" style="background: linear-gradient(135deg, #2d5f4f 0%, #3d7f6f 100%); color: white;">
+                <h3 style="margin-bottom: 20px; font-size: 22px; color: white;">📧 Contatti & Supporto</h3>
+
+                <p style="font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
+                    Per domande, feedback, segnalazioni bug o collaborazioni:
+                </p>
+
+                <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <p style="font-size: 15px; margin-bottom: 5px;"><strong>📧 Email:</strong></p>
+                    <p style="font-size: 16px;">
+                        <a href="mailto:artistmentalhealth@gmail.com" style="color: #a8e6cf; text-decoration: underline;">
+                            artistmentalhealth@gmail.com
+                        </a>
+                    </p>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <p style="font-size: 15px; margin-bottom: 5px;"><strong>🎨 Sviluppato da:</strong></p>
+                    <p style="font-size: 16px;"><strong>Francesco Mariano</strong> - Gruppo Apuano Sperimentale</p>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+                    <p style="font-size: 15px; margin-bottom: 5px;"><strong>💰 Supporta il Progetto:</strong></p>
+                    <p style="font-size: 14px; line-height: 1.6;">
+                        Questo progetto è gratuito e open. Se lo trovi utile, considera di supportarlo tramite
+                        <a href="https://www.paypal.com/paypalme/francescomariano" target="_blank" style="color: #a8e6cf; text-decoration: underline;">donazione PayPal</a>
+                        o acquistando attrezzatura dai link affiliati Thomann/Amazon presenti nel Toolkit e nella Biblioteca.
+                    </p>
+                </div>
             </div>
 
             <!-- Footer -->
