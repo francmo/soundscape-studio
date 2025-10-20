@@ -569,12 +569,13 @@
 
         /* Filter Buttons */
         .filter-btn {
+            font-size: 13px;
             padding: 8px 16px;
             border: 2px solid #e0e0e0;
             border-radius: 20px;
             background: white;
             color: #666;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
@@ -4529,26 +4530,49 @@
                         price: '€180-220',
                         features: ['Capsule X/Y ruotabili 120°', '2 input XLR combo', 'Overdubbing multitrack', 'Basso rumore'],
                         link: 'https://www.thomann.de/it/zoom_h4n_pro.htm'
-                    }
+                    },
+                    {
+                        name: 'Zoom H5',
+                        price: '€280-320',
+                        features: ['4 tracce simultanee', 'Capsule intercambiabili X/Y incluse', 'Phantom power 48V', 'Registrazione fino a 96kHz/24bit'],
+                        link: 'https://www.thomann.de/it/zoom_h5.htm'
+                    },
                 ],
                 professional: [
                     {
                         name: 'Zoom F6',
                         price: '€550-650',
                         features: ['32-bit float 192kHz', 'Dual ADC per ogni canale', 'No gain staging necessario', 'Top qualità/prezzo pro'],
-                        link: 'https://www.thomann.de/it/zoom_f6_field_recorder.htm'
+                        link: 'https://www.thomann.de/it/zoom_f6_field_recorder.htm',
+                        review: 'Il Zoom F6 è il registratore che ha democratizzato il 32-bit float. Il dual ADC system garantisce registrazioni perfette anche in condizioni estreme (concerti, temporali). A questo prezzo, nessun competitor offre questa libertà. Consigliato a tutti i field recordist seri.'
                     },
+                    {
+                        name: 'Zoom F3',
+                        price: '€280-320',
+                        features: ['32-bit float 192kHz', 'Ultra-compatto 2 canali', 'Timecode sync', 'Preamp ultra-low noise'],
+                        link: 'https://www.thomann.de/it/zoom_f3_field_recorder.htm',
+                        review: 'Il Zoom F3 è una rivoluzione nel field recording compatto. Il 32-bit float elimina completamente il problema del clipping, permettendoti di concentrarti sulla composizione senza preoccuparti dei livelli. Perfetto per chi registra eventi imprevedibili (natura, città). Unico limite: solo 2 canali.'
+                    },
+                    {
+                        name: 'Sound Devices MixPre-3 II',
+                        price: '€650-750',
+                        features: ['3 input Kashmir preamps', '32-bit float recording', 'Limitatore trasparente', 'Build quality professionale'],
+                        link: 'https://www.thomann.de/it/sound_devices_mixpre_3_ii.htm',
+                        review: 'I preamp Kashmir di Sound Devices sono considerati tra i migliori al mondo. Il MixPre-3 II offre qualità broadcast in un package compatto. Ideale per registrazioni critiche dove la qualità è tutto. Costoso ma vale ogni euro se lavori professionalmente.'
+                    },,
                     {
                         name: 'Tascam Portacapture X8',
                         price: '€450-550',
                         features: ['32-bit float/192kHz', '4 capsule intercambiabili', 'Touchscreen intuitivo', 'Audio studio-quality'],
-                        link: 'https://www.thomann.de/it/tascam_portacapture_x8.htm'
+                        link: 'https://www.thomann.de/it/tascam_portacapture_x8.htm',
+                        review: 'Il Portacapture X8 è la scelta perfetta per chi vuole flessibilità. Le 4 capsule intercambiabili (X/Y, A/B, shotgun, ecc.) ti permettono di adattarti a ogni situazione senza portare microfoni esterni. Il touchscreen rende l'editing sul campo velocissimo. Unico limite: batterie proprietarie.'
                     },
                     {
                         name: 'Sound Devices MixPre-6 II',
                         price: '€850-1000',
                         features: ['Kashmir preamps leggendari', '32-bit float recording', 'Timecode per sync video', 'Build quality broadcast'],
-                        link: 'https://www.thomann.de/it/sound_devices_mixpre_6_ii.htm'
+                        link: 'https://www.thomann.de/it/sound_devices_mixpre_6_ii.htm',
+                        review: 'Sound Devices è sinonimo di broadcast quality. Il MixPre-6 II con i preamp Kashmir offre il suono più trasparente e musicale che puoi ottenere in un field recorder. Timecode, limitatori trasparenti, build indistruttibile. È l'investimento definitivo se lavori su documentari o produzioni audio professionali.'
                     }
                 ]
             },
@@ -4578,19 +4602,36 @@
                         name: 'Sennheiser MKH 416',
                         price: '€850-1100',
                         features: ['Industry-standard shotgun', 'RF condenser (anti-umidità)', 'Broadcast quality', 'Direzionalità top'],
-                        link: 'https://www.thomann.de/it/sennheiser_mkh_416_p_48.htm'
+                        link: 'https://www.thomann.de/it/sennheiser_mkh_416_p_48.htm',
+                        review: 'Il MKH 416 è il shotgun più usato nel cinema e broadcast mondiale. RF condenser (immune a umidità), direzionalità chirurgica, suono neutro e dettagliato. Dopo 40+ anni è ancora lo standard. Costoso, ma se registri voci o soundscape urbani, non ha rivali. Un acquisto per la vita.'
                     },
                     {
                         name: 'Rode NTG5',
                         price: '€450-550',
                         features: ['Super-leggero 76g', 'RF-bias technology', 'Suono trasparente', 'Best value pro shotgun'],
-                        link: 'https://www.thomann.de/it/rode_ntg5.htm'
+                        link: 'https://www.thomann.de/it/rode_ntg5.htm',
+                        review: 'Il Rode NTG5 è il miglior rapporto qualità/prezzo tra gli shotgun professionali. Pesa solo 76g (perfetto per aste lunghe), suono cristallino grazie alla RF-bias technology, e costa la metà di un MKH 416. Se il tuo budget non arriva a Sennheiser, il NTG5 è la scelta ovvia.'
                     },
+                    {
+                        name: 'Audio-Technica AT875R',
+                        price: '€150-180',
+                        features: ['Short shotgun budget', 'Line/mic switch', 'Batteria AAA', 'Ottimo rapporto qualità/prezzo'],
+                        link: 'https://www.thomann.de/it/audio_technica_at875_r.htm',
+                        review: 'Il microfono "entry-level professional" per eccellenza. Non ha la raffinatezza di un MKH 416, ma a 1/5 del prezzo offre prestazioni sorprendenti. Perfetto per chi vuole iniziare con shotgun professionali senza spendere €1000. Consigliato come backup anche per i pro.'
+                    },
+                    {
+                        name: 'DPA 4060',
+                        price: '€700-800',
+                        features: ['Omnidirezionale miniatura', 'Self-noise 23dB-A', 'Montaggio discreto', 'SPL 134dB'],
+                        link: 'https://www.thomann.de/it/dpa_4060.htm',
+                        review: 'I DPA 4060 sono i lavalier preferiti dai field recordist professionisti. Omnidirezionali con risposta in frequenza lineare, si "nascondono" ovunque (alberi, muri, abbigliamento) catturando l'ambiente naturale senza colorazione. Costosi ma insostituibili per tecniche creative.'
+                    },,
                     {
                         name: 'Sennheiser MKH 8070',
                         price: '€1400-1700',
                         features: ['Long shotgun premium', 'Self-noise solo 8dB', 'Moisture-resistant', 'Rifiuto laterale 38dB'],
-                        link: 'https://www.thomann.de/it/sennheiser_mkh_8070.htm'
+                        link: 'https://www.thomann.de/it/sennheiser_mkh_8070.htm',
+                        review: 'Il MKH 8070 è un long shotgun da €1500+ per una ragione: isolamento laterale incredibile (38dB di reiezione) e rumore proprio di soli 8dB. Usato per wildlife recording a distanza e produzioni cinematografiche. Se devi catturare suoni specifici in ambienti rumorosi, è insuperabile. Ma è un tool specializzato, non versatile.'
                     }
                 ]
             },
@@ -5212,6 +5253,7 @@
                             <span class="category-badge" style="background: #d32f2f;">PROFESSIONAL</span>
                             <h4>${item.name}</h4>
                             <div class="price">${item.price}</div>
+                            ${item.review ? `<div style="background: #f8f9f5; padding: 12px; border-left: 3px solid #d32f2f; margin: 10px 0; border-radius: 4px;"><p style="margin: 0; font-size: 13px; color: #555; line-height: 1.6; font-style: italic;">"${item.review}"</p></div>` : ''}
                             <ul>
                                 ${item.features.map(f => '<li>' + f + '</li>').join('')}
                             </ul>
