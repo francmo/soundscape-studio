@@ -885,8 +885,8 @@
             <!-- Premium Banner (FREE VERSION) -->
             <div id="premium-banner" class="premium-banner" style="display: none;">
                 <div style="flex: 1;">
-                    <h3 style="margin: 0 0 10px 0; color: #fff;">🔒 Proteggi il Tuo Lavoro</h3>
-                    <p style="margin: 0; opacity: 0.95;">Backup completo, export professionale, marker illimitati</p>
+                    <h3 style="margin: 0 0 10px 0; color: #fff;">📤 Export Professionali</h3>
+                    <p style="margin: 0; opacity: 0.95;">Esporta audio, foto e disegni in formato professionale</p>
                 </div>
                 <button onclick="showUpgradeModal()" style="padding: 12px 24px; background: white; color: #d4af37; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 16px; white-space: nowrap;">
                     ⬆️ Upgrade
@@ -7623,20 +7623,7 @@
             const banner = document.getElementById('premium-banner');
             if (banner) {
                 if (!isPremium) {
-                    const usage = getCurrentUsage();
                     banner.style.display = 'flex';
-                    // Show warning about limits and local storage
-                    const warningText = `⚠️ Limite: ${usage.markers}/${FREE_LIMITS.markers} markers | Dati solo locali`;
-                    const existingWarning = banner.querySelector('.usage-stats');
-                    if (!existingWarning) {
-                        const statsDiv = document.createElement('small');
-                        statsDiv.className = 'usage-stats';
-                        statsDiv.style.cssText = 'display: block; margin-top: 5px; opacity: 0.9;';
-                        statsDiv.textContent = warningText;
-                        banner.querySelector('div').appendChild(statsDiv);
-                    } else {
-                        existingWarning.textContent = warningText;
-                    }
                 } else {
                     banner.style.display = 'none';
                 }
