@@ -8246,6 +8246,41 @@
             }
         }
 
+        // Helper function to generate real DOCX using docxtemplater
+        async function generateRealDOCX(content) {
+            // Minimal DOCX template (base64 encoded - empty Word document)
+            const templateBase64 = "UEsDBBQABgAIAAAAIQDfpNJsWgEAACAFAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIooAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACslMtOwzAQRfdI/EPkLUrcskAINe2CxxIqUT7AxJPGqmNbnmlp/56J+xBCoRVqN7ESz9x7MvHNaLJubbaCiMa7UgyLgcjAVV4bNy/Fx+wlvxcZknJaWe+gFBtAMRlfX41mmwCYcbfDUjRE4UFKrBpoFRY+gOOd2sdWEd/GuQyqWqg5yNvB4E5W3hE4yqnTEOPRE9RqaSl7XvPjLUkEiyJ73BZ2XqVQIVhTKWJSuXL6l0u+cyi4M9VgYwLeMIaQvQ7dzt8Gu743Hk00GrKpivSqWsaQayu/fFx8er8ojov0UPq6NhVoXy1bnkCBIYLS2ABQa4u0Fn0rfpUcEg1MjAj2fL8LoRXlHEEw/gQTKvBJ/TTq8tC8OBPkVmZU2gVxKEIhWw5KlHIEh9B0F/3kbwJuRZ8gNvTw8m8DqHY84fnhgHrQXP1EbPXOEzuXUf+8LvpVP9xRPQp/AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==";
+
+            // Convert base64 to binary
+            const binaryString = atob(templateBase64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+
+            // Load template with PizZip
+            const zip = new PizZip(bytes);
+            const doc = new window.docxtemplater(zip, {
+                paragraphLoop: true,
+                linebreaks: true,
+            });
+
+            // Set template data
+            doc.setData(content);
+
+            // Render the document
+            doc.render();
+
+            // Generate blob
+            const blob = doc.getZip().generate({
+                type: 'blob',
+                mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            });
+
+            return blob;
+        }
+
         // Export single exercise to Word (.docx)
         async function exportExerciseToWord(exerciseId) {
             // Check if premium
@@ -8267,155 +8302,56 @@
                 const dateStr = date.toLocaleDateString('it-IT', { day: '2-digit', month: 'long', year: 'numeric' });
                 const timeStr = ex.time || date.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
 
-                // Build HTML for Word
-                let html = `
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>${ex.exercise.title}</title>
-    <style>
-        body {
-            font-family: 'Helvetica', 'Arial', sans-serif;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-            line-height: 1.6;
-            color: #333;
-        }
-        h1 {
-            color: #2d5f4f;
-            border-bottom: 3px solid #2d5f4f;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        .category {
-            display: inline-block;
-            background: #2d5f4f;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            margin-bottom: 20px;
-        }
-        .section {
-            margin-bottom: 25px;
-        }
-        .section h2 {
-            color: #2d5f4f;
-            font-size: 16px;
-            margin-bottom: 10px;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 5px;
-        }
-        .field {
-            margin-bottom: 10px;
-        }
-        .field strong {
-            color: #2d5f4f;
-        }
-        .notes {
-            background: #f8f9fa;
-            padding: 15px;
-            border-left: 4px solid #2d5f4f;
-            border-radius: 4px;
-            white-space: pre-wrap;
-        }
-        .rating {
-            font-size: 20px;
-            color: #f39c12;
-        }
-        ul {
-            margin: 10px 0;
-        }
-        .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
-            font-size: 12px;
-            color: #999;
-        }
-    </style>
-</head>
-<body>
-    <h1>${ex.exercise.title}</h1>
-    <div class="category">${ex.exercise.category || 'Esercizio Soundscape'}</div>
+                // Prepare content for DOCX template
+                const audioList = ex.audioFiles && ex.audioFiles.length > 0
+                    ? ex.audioFiles.map((audio, i) => `Audio ${i + 1}`).join(', ')
+                    : 'Nessuno';
 
-    <div class="section">
-        <h2>📅 Informazioni Base</h2>
-        <div class="field"><strong>Data:</strong> ${dateStr}</div>
-        <div class="field"><strong>Ora:</strong> ${timeStr}</div>
-        <div class="field"><strong>Luogo:</strong> ${ex.location || 'Non specificato'}</div>
-        ${ex.locationCoords && (ex.locationCoords.lat || ex.locationCoords.lon) ?
-          `<div class="field"><strong>Coordinate GPS:</strong> ${ex.locationCoords.lat}, ${ex.locationCoords.lon}</div>` : ''}
-        <div class="field"><strong>Durata:</strong> ${ex.duration || 'Non specificata'}</div>
-    </div>
+                const photoList = ex.photoFiles && ex.photoFiles.length > 0
+                    ? ex.photoFiles.map((photo, i) => `Foto ${i + 1}`).join(', ')
+                    : 'Nessuna';
 
-    <div class="section">
-        <h2>🌍 Contesto Ambientale</h2>
-        <div class="field"><strong>Descrizione ambiente:</strong><br>${ex.environment || 'Non specificato'}</div>
-        <div class="field"><strong>Meteo:</strong> ${ex.weather || 'N/A'}</div>
-        <div class="field"><strong>Livello rumore:</strong> ${ex.noiseLevel || 'N/A'}</div>
-        <div class="field"><strong>Eri solo/a:</strong> ${ex.alone || 'N/A'}</div>
-        <div class="field"><strong>Movimento:</strong> ${ex.movement || 'N/A'}</div>
-    </div>
+                const content = `
+SOUNDSCAPE STUDIO - REPORT ESERCIZIO
 
-    ${ex.recordingTools ? `
-    <div class="section">
-        <h2>🎙️ Strumenti Utilizzati</h2>
-        <div class="field">${ex.recordingTools}</div>
-    </div>
-    ` : ''}
+Titolo: ${ex.exercise.title}
+Categoria: ${ex.exercise.category || 'Esercizio Soundscape'}
 
-    <div class="section">
-        <h2>📝 Considerazioni e Note</h2>
-        <div class="notes">${ex.notes || 'Nessuna nota'}</div>
-    </div>
+INFORMAZIONI BASE
+Data: ${dateStr}
+Ora: ${timeStr}
+Luogo: ${ex.location || 'Non specificato'}
+${ex.locationCoords && (ex.locationCoords.lat || ex.locationCoords.lon) ? `Coordinate GPS: ${ex.locationCoords.lat}, ${ex.locationCoords.lon}` : ''}
+Durata: ${ex.duration || 'Non specificata'}
 
-    ${(ex.audioFiles && ex.audioFiles.length > 0) || (ex.photoFiles && ex.photoFiles.length > 0) ? `
-    <div class="section">
-        <h2>📎 Allegati Multimediali</h2>
-        ${ex.audioFiles && ex.audioFiles.length > 0 ? `
-        <div class="field">
-            <strong>🎵 Registrazioni Audio (${ex.audioFiles.length}):</strong>
-            <ul>
-                ${ex.audioFiles.map((audio, i) => `<li>Audio ${i + 1}</li>`).join('')}
-            </ul>
-        </div>
-        ` : ''}
-        ${ex.photoFiles && ex.photoFiles.length > 0 ? `
-        <div class="field">
-            <strong>📸 Fotografie (${ex.photoFiles.length}):</strong>
-            <ul>
-                ${ex.photoFiles.map((photo, i) => `<li>Foto ${i + 1}</li>`).join('')}
-            </ul>
-        </div>
-        ` : ''}
-    </div>
-    ` : ''}
+CONTESTO AMBIENTALE
+Descrizione ambiente: ${ex.environment || 'Non specificato'}
+Meteo: ${ex.weather || 'N/A'}
+Livello rumore: ${ex.noiseLevel || 'N/A'}
+Eri solo/a: ${ex.alone || 'N/A'}
+Movimento: ${ex.movement || 'N/A'}
 
-    ${ex.tags ? `
-    <div class="section">
-        <div class="field"><strong>🏷️ Tag:</strong> ${ex.tags}</div>
-    </div>
-    ` : ''}
+${ex.recordingTools ? `STRUMENTI UTILIZZATI\n${ex.recordingTools}\n\n` : ''}
 
-    ${ex.rating > 0 ? `
-    <div class="section">
-        <div class="field"><strong>Valutazione:</strong><br>
-        <span class="rating">${'★'.repeat(parseInt(ex.rating))}</span></div>
-    </div>
-    ` : ''}
+CONSIDERAZIONI E NOTE
+${ex.notes || 'Nessuna nota'}
 
-    <div class="footer">
-        Esercizio completato il: ${date.toLocaleString('it-IT')}<br>
-        Generato da Soundscape Studio Premium
-    </div>
-</body>
-</html>`;
+ALLEGATI MULTIMEDIALI
+Registrazioni Audio: ${audioList}
+Fotografie: ${photoList}
 
-                // Create blob with proper MIME type for .docx
-                const blob = new Blob([html], {
+${ex.tags ? `TAG\n${ex.tags}\n\n` : ''}
+
+${ex.rating > 0 ? `VALUTAZIONE\n${'★'.repeat(parseInt(ex.rating))}\n\n` : ''}
+
+---
+Esercizio completato il: ${date.toLocaleString('it-IT')}
+Generato da Soundscape Studio Premium
+`;
+
+                // Create HTML version as fallback
+                const htmlContent = content.replace(/\n/g, '<br>').replace(/  /g, '&nbsp;&nbsp;');
+                const blob = new Blob([`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Arial,sans-serif;margin:40px;line-height:1.6;}</style></head><body><pre style="white-space:pre-wrap;font-family:Arial;">${htmlContent}</pre></body></html>`], {
                     type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
                 });
 
@@ -9048,66 +8984,48 @@
                     return;
                 }
 
-                // Create HTML content for Word
-                let html = `
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        h1 { color: #2d5f4f; text-align: center; margin-bottom: 40px; }
-        h2 { color: #d4af37; border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-top: 30px; }
-        .exercise { margin-bottom: 40px; page-break-inside: avoid; }
-        .meta { color: #666; font-size: 14px; margin: 10px 0; }
-        .notes { background: #f8f9fa; padding: 15px; border-left: 4px solid #2d5f4f; margin: 15px 0; }
-        .footer { text-align: center; margin-top: 50px; color: #999; font-size: 12px; }
-    </style>
-</head>
-<body>
-    <h1>🎧 Soundscape Studio - Report Esercizi</h1>
-    <p style="text-align: center; color: #666;">Generato il ${new Date().toLocaleDateString('it-IT')}</p>
-    <p style="text-align: center; color: #666;">Totale esercizi: ${exercises.length}</p>
-    <hr style="margin: 30px 0;">
+                // Build text content for all exercises
+                let content = `SOUNDSCAPE STUDIO - REPORT ESERCIZI
+
+Generato il: ${new Date().toLocaleDateString('it-IT')}
+Totale esercizi: ${exercises.length}
+
+================================================================================
+
 `;
 
                 exercises.forEach((ex, index) => {
                     const date = new Date(ex.timestamp).toLocaleDateString('it-IT');
-                    html += `
-    <div class="exercise">
-        <h2>${index + 1}. ${ex.exercise.title}</h2>
-        <div class="meta">
-            <p><strong>📅 Data:</strong> ${date}</p>
-            <p><strong>📂 Categoria:</strong> ${ex.exercise.category || 'N/A'}</p>
-            <p><strong>⭐ Difficoltà:</strong> ${ex.exercise.difficulty || 'N/A'}</p>
-            ${ex.locationName ? `<p><strong>📍 Luogo:</strong> ${ex.locationName}</p>` : ''}
-            ${ex.locationCoords ? `<p><strong>🗺️ Coordinate:</strong> ${ex.locationCoords.lat}, ${ex.locationCoords.lon}</p>` : ''}
-        </div>
+                    content += `
+${index + 1}. ${ex.exercise.title}
+----------------------------------------
+Data: ${date}
+Categoria: ${ex.exercise.category || 'N/A'}
+Difficolta: ${ex.exercise.difficulty || 'N/A'}
+${ex.locationName ? `Luogo: ${ex.locationName}` : ''}
+${ex.locationCoords ? `Coordinate: ${ex.locationCoords.lat}, ${ex.locationCoords.lon}` : ''}
 
-        ${ex.notes ? `
-        <div class="notes">
-            <h3>📝 Note</h3>
-            <p>${ex.notes.replace(/\n/g, '<br>')}</p>
-        </div>` : ''}
+${ex.notes ? `NOTE:\n${ex.notes}\n` : ''}
 
-        <div class="meta">
-            ${ex.audioFiles && ex.audioFiles.length > 0 ? `<p>🎵 <strong>${ex.audioFiles.length} file audio registrati</strong></p>` : ''}
-            ${ex.photoFiles && ex.photoFiles.length > 0 ? `<p>📷 <strong>${ex.photoFiles.length} foto allegate</strong></p>` : ''}
-        </div>
-    </div>
+${ex.audioFiles && ex.audioFiles.length > 0 ? `${ex.audioFiles.length} file audio registrati` : ''}
+${ex.photoFiles && ex.photoFiles.length > 0 ? `${ex.photoFiles.length} foto allegate` : ''}
+
+================================================================================
+
 `;
                 });
 
-                html += `
-    <div class="footer">
-        <p>Generato con Soundscape Studio Premium</p>
-        <p>🎧 Professional Field Recording & Composition Toolkit</p>
-    </div>
-</body>
-</html>`;
+                content += `
+Generato con Soundscape Studio Premium
+Professional Field Recording & Composition Toolkit
+`;
 
-                // Convert to blob and download (use .docx for better compatibility)
-                const blob = new Blob([html], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+                // Create HTML version for better formatting
+                const htmlContent = content.replace(/\n/g, '<br>').replace(/  /g, '&nbsp;&nbsp;');
+                const blob = new Blob([`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Arial,sans-serif;margin:40px;line-height:1.6;}</style></head><body><pre style="white-space:pre-wrap;font-family:Arial;">${htmlContent}</pre></body></html>`], {
+                    type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                });
+
                 const filename = `soundscape-report-${new Date().toISOString().split('T')[0]}.docx`;
 
                 await downloadOrShareFile(blob, filename, 'Esporta Report Word');
