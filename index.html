@@ -9241,6 +9241,18 @@ Numero file audio: ${ex.audioFiles.length}
                     for (let i = 0; i < ex.audioFiles.length; i++) {
                         const audioBlob = ex.audioFiles[i];
 
+                        // Validate that audioBlob is actually a Blob
+                        if (!audioBlob || !(audioBlob instanceof Blob)) {
+                            console.warn(`⚠️ Skipping invalid audio ${i + 1}: not a Blob`);
+                            continue;
+                        }
+
+                        // Skip empty blobs
+                        if (audioBlob.size === 0) {
+                            console.warn(`⚠️ Skipping empty audio ${i + 1}`);
+                            continue;
+                        }
+
                         // Get file extension from blob type
                         const fileExt = audioBlob.type === 'audio/webm' ? 'webm' :
                                        audioBlob.type === 'audio/wav' ? 'wav' :
@@ -9281,6 +9293,18 @@ Coordinate: ${marker.lat.toFixed(6)}, ${marker.lng.toFixed(6)}
 Note: ${marker.notes || 'Nessuna nota'}
 `;
                     zip.file(`${folderName}/Info.txt`, info);
+
+                    // Validate that audioBlob is actually a Blob
+                    if (!audioBlob || !(audioBlob instanceof Blob)) {
+                        console.warn(`⚠️ Skipping invalid marker audio ${i + 1}: not a Blob`);
+                        continue;
+                    }
+
+                    // Skip empty blobs
+                    if (audioBlob.size === 0) {
+                        console.warn(`⚠️ Skipping empty marker audio ${i + 1}`);
+                        continue;
+                    }
 
                     // Add audio in original format (no conversion)
                     const fileExt = audioBlob.type === 'audio/webm' ? 'webm' :
