@@ -2059,18 +2059,54 @@
                 </p>
             </div>
 
-            <!-- Audio Selector -->
+            <!-- Audio Source Selector -->
             <div class="card" style="margin-bottom: 20px;">
-                <h4 style="color: #2d5f4f; margin-bottom: 15px;">🎧 Seleziona Audio</h4>
-                <select id="spectrogramAudioSelector" style="width: 100%; padding: 10px; border-radius: 6px; border: 2px solid #e0e0e0; margin-bottom: 15px; font-size: 14px;">
-                    <option value="">-- Seleziona un audio --</option>
-                </select>
-                <div id="spectrogramNoAudio" style="background: #f0f7f4; padding: 15px; border-radius: 8px; border-left: 4px solid #4a9d7f; display: none;">
-                    <p style="color: #2d5f4f; font-weight: 600; margin-bottom: 8px;">📝 Nessun audio salvato</p>
-                    <p style="color: #666; font-size: 13px; margin: 0;">
-                        Per utilizzare questa sezione, devi prima salvare degli audio:<br>
-                        • Vai in <strong>🔔 Soundscape Exercises</strong> e completa un esercizio con registrazione<br>
-                        • Oppure vai in <strong>🗺️ Soundscape Map</strong> e aggiungi un marker con audio
+                <h4 style="color: #2d5f4f; margin-bottom: 15px;">🎧 Carica Audio</h4>
+
+                <!-- Source Type Selector -->
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; font-weight: 600; color: #2d5f4f; margin-bottom: 8px; font-size: 14px;">Scegli sorgente audio:</label>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+                        <button onclick="showSpectrogramSource('exercises')" id="spectrogramSourceExercises" class="btn" style="background: #4a9d7f; color: white; font-size: 13px; padding: 10px;">
+                            📝 Da Esercizi
+                        </button>
+                        <button onclick="showSpectrogramSource('markers')" id="spectrogramSourceMarkers" class="btn" style="background: #4a9d7f; color: white; font-size: 13px; padding: 10px;">
+                            📍 Da Marker Map
+                        </button>
+                        <button onclick="showSpectrogramSource('device')" id="spectrogramSourceDevice" class="btn" style="background: #4a9d7f; color: white; font-size: 13px; padding: 10px;">
+                            📁 Da Dispositivo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Exercise Audio Selector -->
+                <div id="spectrogramExercisesPanel" style="display: none;">
+                    <label style="display: block; font-weight: 600; color: #2d5f4f; margin-bottom: 8px; font-size: 14px;">Seleziona esercizio:</label>
+                    <select id="spectrogramExerciseSelector" style="width: 100%; padding: 10px; border-radius: 6px; border: 2px solid #e0e0e0; font-size: 14px;" onchange="onSpectrogramExerciseSelected(this.value)">
+                        <option value="">-- Seleziona un esercizio --</option>
+                    </select>
+                    <p id="spectrogramNoExercises" style="color: #999; font-style: italic; font-size: 13px; margin-top: 10px; display: none;">
+                        Nessun esercizio con audio salvato. Vai in <strong>🔔 Soundscape Exercises</strong> e completa un esercizio con registrazione.
+                    </p>
+                </div>
+
+                <!-- Marker Audio Selector -->
+                <div id="spectrogramMarkersPanel" style="display: none;">
+                    <label style="display: block; font-weight: 600; color: #2d5f4f; margin-bottom: 8px; font-size: 14px;">Seleziona marker:</label>
+                    <select id="spectrogramMarkerSelector" style="width: 100%; padding: 10px; border-radius: 6px; border: 2px solid #e0e0e0; font-size: 14px;" onchange="onSpectrogramMarkerSelected(this.value)">
+                        <option value="">-- Seleziona un marker --</option>
+                    </select>
+                    <p id="spectrogramNoMarkers" style="color: #999; font-style: italic; font-size: 13px; margin-top: 10px; display: none;">
+                        Nessun marker con audio salvato. Vai in <strong>🗺️ Soundscape Map</strong> e aggiungi un marker con audio.
+                    </p>
+                </div>
+
+                <!-- Device File Uploader -->
+                <div id="spectrogramDevicePanel" style="display: none;">
+                    <label style="display: block; font-weight: 600; color: #2d5f4f; margin-bottom: 8px; font-size: 14px;">Carica file audio:</label>
+                    <input type="file" id="spectrogramDeviceFile" accept="audio/*" style="width: 100%; padding: 10px; border-radius: 6px; border: 2px solid #e0e0e0; font-size: 14px;" onchange="onSpectrogramDeviceFileSelected(this)">
+                    <p style="color: #666; font-size: 12px; margin-top: 8px; font-style: italic;">
+                        Formati supportati: MP3, WAV, M4A, OGG, WEBM
                     </p>
                 </div>
             </div>
@@ -9391,131 +9427,202 @@ Note: ${marker.notes || 'Nessuna nota'}
 
             // Load available audio files
             loadSpectrogramAudioList();
-
-            // Setup audio selector change handler
-            const audioSelector = document.getElementById('spectrogramAudioSelector');
-            if (audioSelector) {
-                audioSelector.addEventListener('change', onSpectrogramAudioSelected);
-            }
-
             console.log('✅ Spectrogram Playback initialized');
         }
 
-        // Load list of saved audio files from exercises and markers
-        async function loadSpectrogramAudioList() {
-            const selector = document.getElementById('spectrogramAudioSelector');
-            const noAudioMsg = document.getElementById('spectrogramNoAudio');
+        // Show/hide source panels
+        function showSpectrogramSource(source) {
+            // Hide all panels
+            document.getElementById('spectrogramExercisesPanel').style.display = 'none';
+            document.getElementById('spectrogramMarkersPanel').style.display = 'none';
+            document.getElementById('spectrogramDevicePanel').style.display = 'none';
+
+            // Reset button styles
+            document.querySelectorAll('#spectrogramSourceExercises, #spectrogramSourceMarkers, #spectrogramSourceDevice').forEach(btn => {
+                btn.style.background = '#4a9d7f';
+                btn.style.opacity = '0.7';
+            });
+
+            // Show selected panel and highlight button
+            if (source === 'exercises') {
+                document.getElementById('spectrogramExercisesPanel').style.display = 'block';
+                document.getElementById('spectrogramSourceExercises').style.opacity = '1';
+                loadSpectrogramExercises();
+            } else if (source === 'markers') {
+                document.getElementById('spectrogramMarkersPanel').style.display = 'block';
+                document.getElementById('spectrogramSourceMarkers').style.opacity = '1';
+                loadSpectrogramMarkers();
+            } else if (source === 'device') {
+                document.getElementById('spectrogramDevicePanel').style.display = 'block';
+                document.getElementById('spectrogramSourceDevice').style.opacity = '1';
+            }
+        }
+
+        // Load exercises with audio
+        async function loadSpectrogramExercises() {
+            const selector = document.getElementById('spectrogramExerciseSelector');
+            const noMsg = document.getElementById('spectrogramNoExercises');
 
             if (!selector) return;
 
-            // Clear existing options
-            selector.innerHTML = '<option value="">-- Seleziona un audio --</option>';
+            // Clear options
+            selector.innerHTML = '<option value="">-- Seleziona un esercizio --</option>';
 
-            let audioCount = 0;
+            let count = 0;
 
-            // Load from exercises
-            const exercisesDB = await openDB('exercisesDB', 1);
-            const exercisesTx = exercisesDB.transaction('exercises', 'readonly');
-            const exercisesStore = exercisesTx.objectStore('exercises');
-            const allExercises = await exercisesStore.getAll();
+            // Load from database
+            const db = await openDB('exercisesDB', 1);
+            const tx = db.transaction('exercises', 'readonly');
+            const store = tx.objectStore('exercises');
+            const allExercises = await store.getAll();
 
             for (const ex of allExercises) {
                 if (ex.audioBlob) {
                     const option = document.createElement('option');
-                    option.value = `exercise_${ex.id}`;
-                    option.textContent = `📝 ${ex.category || 'Esercizio'} - ${new Date(ex.date).toLocaleDateString()}`;
-                    option.dataset.type = 'exercise';
-                    option.dataset.id = ex.id;
+                    option.value = ex.id;
+                    option.textContent = `${ex.category || 'Esercizio'} - ${new Date(ex.date).toLocaleDateString()}`;
                     selector.appendChild(option);
-                    audioCount++;
+                    count++;
                 }
             }
 
-            // Load from markers
-            const markersDB = await openDB('markersDB', 1);
-            const markersTx = markersDB.transaction('markers', 'readonly');
-            const markersStore = markersTx.objectStore('markers');
-            const allMarkers = await markersStore.getAll();
+            // Show/hide message
+            noMsg.style.display = count === 0 ? 'block' : 'none';
+            selector.disabled = count === 0;
+
+            console.log(`📝 Loaded ${count} exercises with audio`);
+        }
+
+        // Load markers with audio
+        async function loadSpectrogramMarkers() {
+            const selector = document.getElementById('spectrogramMarkerSelector');
+            const noMsg = document.getElementById('spectrogramNoMarkers');
+
+            if (!selector) return;
+
+            // Clear options
+            selector.innerHTML = '<option value="">-- Seleziona un marker --</option>';
+
+            let count = 0;
+
+            // Load from database
+            const db = await openDB('markersDB', 1);
+            const tx = db.transaction('markers', 'readonly');
+            const store = tx.objectStore('markers');
+            const allMarkers = await store.getAll();
 
             for (const marker of allMarkers) {
                 if (marker.audioBlob) {
                     const option = document.createElement('option');
-                    option.value = `marker_${marker.id}`;
-                    option.textContent = `📍 ${marker.category || 'Marker'} - ${marker.notes || new Date(marker.timestamp).toLocaleDateString()}`;
-                    option.dataset.type = 'marker';
-                    option.dataset.id = marker.id;
+                    option.value = marker.id;
+                    option.textContent = `${marker.category || 'Marker'} - ${marker.notes || new Date(marker.timestamp).toLocaleDateString()}`;
                     selector.appendChild(option);
-                    audioCount++;
+                    count++;
                 }
             }
 
-            // Show/hide no audio message
-            if (audioCount === 0) {
-                noAudioMsg.style.display = 'block';
-                selector.disabled = true;
-            } else {
-                noAudioMsg.style.display = 'none';
-                selector.disabled = false;
-            }
+            // Show/hide message
+            noMsg.style.display = count === 0 ? 'block' : 'none';
+            selector.disabled = count === 0;
 
-            console.log(`📊 Loaded ${audioCount} audio files for spectrogram`);
+            console.log(`📍 Loaded ${count} markers with audio`);
         }
 
-        // Handle audio selection
-        async function onSpectrogramAudioSelected(event) {
-            const value = event.target.value;
-            if (!value) return;
+        // Handle exercise selection
+        async function onSpectrogramExerciseSelected(exerciseId) {
+            if (!exerciseId) return;
 
-            const option = event.target.selectedOptions[0];
-            const type = option.dataset.type;
-            const id = parseInt(option.dataset.id);
-
-            console.log(`🎵 Loading audio: ${type} #${id}`);
+            const id = parseInt(exerciseId);
+            console.log(`🎵 Loading exercise audio #${id}`);
 
             // Stop current playback
             stopSpectrogramAudio();
 
-            // Load audio blob
-            let audioBlob = null;
-            let audioInfo = {};
+            // Load from database
+            const db = await openDB('exercisesDB', 1);
+            const tx = db.transaction('exercises', 'readonly');
+            const store = tx.objectStore('exercises');
+            const exercise = await store.get(id);
 
-            if (type === 'exercise') {
-                const db = await openDB('exercisesDB', 1);
-                const tx = db.transaction('exercises', 'readonly');
-                const store = tx.objectStore('exercises');
-                const exercise = await store.get(id);
-
-                if (exercise && exercise.audioBlob) {
-                    audioBlob = exercise.audioBlob;
-                    audioInfo = {
-                        category: exercise.category,
-                        date: new Date(exercise.date).toLocaleString(),
-                        duration: exercise.duration || 'N/A',
-                        location: exercise.location || 'N/A'
-                    };
-                }
-            } else if (type === 'marker') {
-                const db = await openDB('markersDB', 1);
-                const tx = db.transaction('markers', 'readonly');
-                const store = tx.objectStore('markers');
-                const marker = await store.get(id);
-
-                if (marker && marker.audioBlob) {
-                    audioBlob = marker.audioBlob;
-                    audioInfo = {
-                        category: marker.category,
-                        date: new Date(marker.timestamp).toLocaleString(),
-                        notes: marker.notes || 'N/A',
-                        location: `${marker.lat.toFixed(6)}, ${marker.lng.toFixed(6)}`
-                    };
-                }
-            }
-
-            if (audioBlob) {
-                await loadSpectrogramAudio(audioBlob, audioInfo);
+            if (exercise && exercise.audioBlob) {
+                const audioInfo = {
+                    source: 'Exercise',
+                    category: exercise.category,
+                    date: new Date(exercise.date).toLocaleString(),
+                    duration: exercise.duration || 'N/A',
+                    location: exercise.location || 'N/A'
+                };
+                await loadSpectrogramAudio(exercise.audioBlob, audioInfo);
             } else {
                 alert('❌ Audio non trovato');
             }
+        }
+
+        // Handle marker selection
+        async function onSpectrogramMarkerSelected(markerId) {
+            if (!markerId) return;
+
+            const id = parseInt(markerId);
+            console.log(`🎵 Loading marker audio #${id}`);
+
+            // Stop current playback
+            stopSpectrogramAudio();
+
+            // Load from database
+            const db = await openDB('markersDB', 1);
+            const tx = db.transaction('markers', 'readonly');
+            const store = tx.objectStore('markers');
+            const marker = await store.get(id);
+
+            if (marker && marker.audioBlob) {
+                const audioInfo = {
+                    source: 'Marker',
+                    category: marker.category,
+                    date: new Date(marker.timestamp).toLocaleString(),
+                    notes: marker.notes || 'N/A',
+                    location: `${marker.lat.toFixed(6)}, ${marker.lng.toFixed(6)}`
+                };
+                await loadSpectrogramAudio(marker.audioBlob, audioInfo);
+            } else {
+                alert('❌ Audio non trovato');
+            }
+        }
+
+        // Handle device file selection
+        async function onSpectrogramDeviceFileSelected(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            console.log(`📁 Loading file: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`);
+
+            // Stop current playback
+            stopSpectrogramAudio();
+
+            // Check file type
+            if (!file.type.startsWith('audio/')) {
+                alert('❌ File non valido. Seleziona un file audio.');
+                input.value = '';
+                return;
+            }
+
+            // Create blob from file
+            const audioBlob = new Blob([await file.arrayBuffer()], { type: file.type });
+
+            const audioInfo = {
+                source: 'Device File',
+                filename: file.name,
+                size: `${(file.size / 1024 / 1024).toFixed(2)} MB`,
+                type: file.type,
+                date: new Date().toLocaleString()
+            };
+
+            await loadSpectrogramAudio(audioBlob, audioInfo);
+        }
+
+        // Compatibility function for old code
+        async function loadSpectrogramAudioList() {
+            // Default to exercises view
+            showSpectrogramSource('exercises');
         }
 
         // Load audio blob and prepare for playback
