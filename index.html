@@ -10128,14 +10128,14 @@ Note: ${marker.notes || 'Nessuna nota'}
         </div>
     </div>
 
-    <!-- Web Share API Script for Social Sharing -->
+    <!-- WhatsApp/Facebook Share Script - UTF-8 encoding fix -->
     <script>
-    // Funzione di condivisione universale con Web Share API + fallback
-    async function shareApp(platform) {
+    // Soluzione definitiva: JavaScript con encodeURIComponent per encoding UTF-8 corretto
+    function shareApp(platform) {
         const shareMessage = `🎵 SOUNDSCAPE STUDIO - Aggiornamento Importante! 🎵
 
 • 📊 Export professionali (Excel, Word, PDF)
-• 🗺️ Export GIS (KML, GeoJSON, CSV)
+• 🗺 Export GIS (KML, GeoJSON, CSV)
 • 💾 Backup completo illimitato
 • 🎵 Export archivio audio ZIP
 • ⭐ Markers illimitati
@@ -10149,45 +10149,24 @@ Note: ${marker.notes || 'Nessuna nota'}
 🙏 Aiutami a migliorare: testa l'app e fammi sapere cosa ne pensi!`;
 
         const shareUrl = 'https://soundscape-project-studio.netlify.app';
-        const shareTitle = 'Soundscape Studio';
 
-        // SOLUZIONE 1: Web Share API (nativa per PWA/Mobile)
-        if (navigator.share && platform === 'native') {
-            try {
-                await navigator.share({
-                    title: shareTitle,
-                    text: shareMessage,
-                    url: shareUrl
-                });
-                console.log('✅ Condivisione riuscita tramite Web Share API');
-                return;
-            } catch (err) {
-                if (err.name === 'AbortError') {
-                    console.log('ℹ️ Condivisione annullata dall\'utente');
-                    return;
-                } else {
-                    console.error('❌ Errore Web Share API:', err);
-                }
-            }
-        }
-
-        // SOLUZIONE 2: Fallback con encoding corretto
+        // Genera URL dinamicamente con encodeURIComponent (UTF-8 corretto)
         const encodedMessage = encodeURIComponent(shareMessage);
-        let fallbackUrl = '';
+        let url = '';
 
         if (platform === 'whatsapp') {
-            fallbackUrl = `https://wa.me/?text=${encodedMessage}`;
+            url = `https://wa.me/?text=${encodedMessage}`;
         } else if (platform === 'facebook') {
             const encodedUrl = encodeURIComponent(shareUrl);
-            fallbackUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedMessage}`;
+            url = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedMessage}`;
         }
 
-        if (fallbackUrl) {
-            window.open(fallbackUrl, '_blank', 'noopener,noreferrer');
+        if (url) {
+            window.open(url, '_blank', 'noopener,noreferrer');
         }
     }
 
-    // Esponi la funzione globalmente
+    // Esponi la funzione globalmente per onclick
     window.shareApp = shareApp;
     </script>
 
