@@ -9330,7 +9330,9 @@ Numero file audio: ${ex.audioFiles.length}
 
                         console.log(`Adding exercise audio ${i + 1}/${ex.audioFiles.length} (${fileExt}, ${(audioBlob.size / 1024).toFixed(1)} KB)...`);
 
-                        zip.file(`${folderName}/audio-${i + 1}.${fileExt}`, audioBlob);
+                        // Convert Blob to ArrayBuffer for JSZip compatibility
+                        const arrayBuffer = await audioBlob.arrayBuffer();
+                        zip.file(`${folderName}/audio-${i + 1}.${fileExt}`, arrayBuffer);
                         totalAudioCount++;
                     }
                 }
@@ -9364,7 +9366,9 @@ Note: ${marker.notes || 'Nessuna nota'}
 
                     console.log(`Adding marker audio ${i + 1}/${markersWithAudio.length} (${fileExt}, ${(audioBlob.size / 1024).toFixed(1)} KB)...`);
 
-                    zip.file(`${folderName}/audio-${markerIdStr.substring(0, 8)}.${fileExt}`, audioBlob);
+                    // Convert Blob to ArrayBuffer for JSZip compatibility
+                    const arrayBuffer = await audioBlob.arrayBuffer();
+                    zip.file(`${folderName}/audio-${markerIdStr.substring(0, 8)}.${fileExt}`, arrayBuffer);
                     totalAudioCount++;
                 }
 
