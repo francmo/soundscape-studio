@@ -1,0 +1,9 @@
+# Redirect dal vecchio dominio al nuovo dominio italiano
+# Status 301 = Permanent redirect (migliore per SEO)
+
+/* https://soundscape-studio-ita.netlify.app/:splat 301!
+
+# Note:
+# - :splat cattura tutto il path dopo il dominio
+# - 301! forza il redirect anche se la pagina esiste
+# - Questo redirect vale per tutte le pagine del sito
