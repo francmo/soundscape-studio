@@ -933,7 +933,7 @@
                     <a href="https://www.paypal.com/paypalme/francescomariano" class="footer-btn paypal" target="_blank">
                         💰 Sostieni con Donazione
                     </a>
-                    <a href="mailto:artistmentalhealth@gmail.com?subject=Feedback%20Soundscape%20Studio" class="footer-btn feedback">
+                    <a href="mailto:soundscapestudiopro@gmail.com?subject=Feedback%20Soundscape%20Studio" class="footer-btn feedback">
                         ✉️ Invia Feedback
                     </a>
                 </div>
@@ -1003,7 +1003,7 @@
                     <a href="https://www.paypal.com/paypalme/francescomariano" class="footer-btn paypal" target="_blank">
                         💰 Sostieni con Donazione
                     </a>
-                    <a href="mailto:artistmentalhealth@gmail.com?subject=Feedback%20Soundscape%20Studio" class="footer-btn feedback">
+                    <a href="mailto:soundscapestudiopro@gmail.com?subject=Feedback%20Soundscape%20Studio" class="footer-btn feedback">
                         ✉️ Invia Feedback
                     </a>
                 </div>
@@ -1095,7 +1095,7 @@
                     <a href="https://www.paypal.com/paypalme/francescomariano" class="footer-btn paypal" target="_blank">
                         💰 Sostieni con Donazione
                     </a>
-                    <a href="mailto:artistmentalhealth@gmail.com?subject=Feedback%20Soundscape%20Studio" class="footer-btn feedback">
+                    <a href="mailto:soundscapestudiopro@gmail.com?subject=Feedback%20Soundscape%20Studio" class="footer-btn feedback">
                         ✉️ Invia Feedback
                     </a>
                 </div>
@@ -1146,7 +1146,7 @@
                     <a href="https://www.paypal.com/paypalme/francescomariano" class="footer-btn paypal" target="_blank">
                         💰 Sostieni con Donazione
                     </a>
-                    <a href="mailto:artistmentalhealth@gmail.com?subject=Feedback%20Soundscape%20Studio" class="footer-btn feedback">
+                    <a href="mailto:soundscapestudiopro@gmail.com?subject=Feedback%20Soundscape%20Studio" class="footer-btn feedback">
                         ✉️ Invia Feedback
                     </a>
                 </div>
@@ -1490,7 +1490,7 @@
                 <div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 8px;">
                     <p style="font-size: 15px; margin-bottom: 10px; color: #ffffff;"><strong>💰 Supporta il Progetto:</strong></p>
                     <p style="font-size: 14px; line-height: 1.6; color: #ffffff;">
-                        Se trovi utile questo progetto, considera di supportarlo usando i link affiliati per l'attrezzatura o tramite donazione PayPal.
+                        Se trovi utile questo progetto, considera di supportarlo tramite donazione PayPal.
                     </p>
                 </div>
             </div>
@@ -1858,7 +1858,7 @@
                 <div style="background: rgba(255,255,255,0.15); padding: 15px; border-radius: 8px;">
                     <p style="font-size: 15px; margin-bottom: 10px; color: #ffffff;"><strong>💰 Supporta il Progetto:</strong></p>
                     <p style="font-size: 14px; line-height: 1.6; color: #ffffff;">
-                        Se trovi utile questo progetto, considera di supportarlo usando i link affiliati per l'attrezzatura o tramite donazione PayPal.
+                        Se trovi utile questo progetto, considera di supportarlo tramite donazione PayPal.
                     </p>
                 </div>
             </div>
@@ -1875,7 +1875,7 @@
                     <a href="https://www.paypal.com/paypalme/francescomariano" class="footer-btn paypal" target="_blank">
                         💰 Sostieni con Donazione
                     </a>
-                    <a href="mailto:artistmentalhealth@gmail.com?subject=Feedback%20Soundscape%20Studio" class="footer-btn feedback">
+                    <a href="mailto:soundscapestudiopro@gmail.com?subject=Feedback%20Soundscape%20Studio" class="footer-btn feedback">
                         ✉️ Invia Feedback
                     </a>
                 </div>
@@ -2033,7 +2033,7 @@
                     <a href="https://www.paypal.com/paypalme/francescomariano" class="footer-btn paypal" target="_blank">
                         💰 Sostieni con Donazione
                     </a>
-                    <a href="mailto:artistmentalhealth@gmail.com?subject=Feedback%20Soundscape%20Studio" class="footer-btn feedback">
+                    <a href="mailto:soundscapestudiopro@gmail.com?subject=Feedback%20Soundscape%20Studio" class="footer-btn feedback">
                         ✉️ Invia Feedback
                     </a>
                 </div>
@@ -2329,7 +2329,7 @@
                     <a href="https://www.paypal.com/paypalme/francescomariano" class="footer-btn paypal" target="_blank">
                         💰 Sostieni con Donazione
                     </a>
-                    <a href="mailto:artistmentalhealth@gmail.com?subject=Feedback%20Soundscape%20Studio" class="footer-btn feedback">
+                    <a href="mailto:soundscapestudiopro@gmail.com?subject=Feedback%20Soundscape%20Studio" class="footer-btn feedback">
                         ✉️ Invia Feedback
                     </a>
                 </div>
@@ -8349,13 +8349,49 @@ Esercizio completato il: ${date.toLocaleString('it-IT')}
 Generato da Soundscape Studio Premium
 `;
 
-                // Create HTML version as fallback
-                const htmlContent = content.replace(/\n/g, '<br>').replace(/  /g, '&nbsp;&nbsp;');
-                const blob = new Blob([`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Arial,sans-serif;margin:40px;line-height:1.6;}</style></head><body><pre style="white-space:pre-wrap;font-family:Arial;">${htmlContent}</pre></body></html>`], {
-                    type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                // Create RTF format (compatible with Pages, Word, TextEdit)
+                const rtfContent = `{\\rtf1\\ansi\\deff0
+{\\fonttbl{\\f0\\fswiss\\fcharset0 Arial;}}
+{\\colortbl;\\red47\\green95\\blue79;}
+\\viewkind4\\uc1\\pard\\cf1\\f0\\fs28\\b SOUNDSCAPE STUDIO - REPORT ESERCIZIO\\b0\\fs22\\par
+\\par
+\\cf0\\b Titolo:\\b0  ${ex.exercise.title.replace(/[\\{}]/g, '')}\\par
+\\b Categoria:\\b0  ${(ex.exercise.category || 'Esercizio Soundscape').replace(/[\\{}]/g, '')}\\par
+\\par
+\\b INFORMAZIONI BASE\\b0\\par
+Data: ${dateStr}\\par
+Ora: ${timeStr}\\par
+Luogo: ${(ex.location || 'Non specificato').replace(/[\\{}]/g, '')}\\par
+${ex.locationCoords && (ex.locationCoords.lat || ex.locationCoords.lon) ? `Coordinate GPS: ${ex.locationCoords.lat}, ${ex.locationCoords.lon}\\par` : ''}
+Durata: ${(ex.duration || 'Non specificata').replace(/[\\{}]/g, '')}\\par
+\\par
+\\b CONTESTO AMBIENTALE\\b0\\par
+Descrizione ambiente: ${(ex.environment || 'Non specificato').replace(/[\\{}]/g, '')}\\par
+Meteo: ${(ex.weather || 'N/A').replace(/[\\{}]/g, '')}\\par
+Livello rumore: ${(ex.noiseLevel || 'N/A').replace(/[\\{}]/g, '')}\\par
+Eri solo/a: ${(ex.alone || 'N/A').replace(/[\\{}]/g, '')}\\par
+Movimento: ${(ex.movement || 'N/A').replace(/[\\{}]/g, '')}\\par
+\\par
+${ex.recordingTools ? `\\b STRUMENTI UTILIZZATI\\b0\\par${ex.recordingTools.replace(/[\\{}]/g, '')}\\par\\par` : ''}
+\\b CONSIDERAZIONI E NOTE\\b0\\par
+${(ex.notes || 'Nessuna nota').replace(/[\\{}]/g, '').replace(/\n/g, '\\par ')}\\par
+\\par
+\\b ALLEGATI MULTIMEDIALI\\b0\\par
+Registrazioni Audio: ${audioList.replace(/[\\{}]/g, '')}\\par
+Fotografie: ${photoList.replace(/[\\{}]/g, '')}\\par
+\\par
+${ex.tags ? `\\b TAG\\b0\\par${ex.tags.replace(/[\\{}]/g, '')}\\par\\par` : ''}
+${ex.rating > 0 ? `\\b VALUTAZIONE\\b0\\par${'*'.repeat(parseInt(ex.rating))}\\par\\par` : ''}
+\\line ---\\par
+Esercizio completato il: ${date.toLocaleString('it-IT')}\\par
+Generato da Soundscape Studio Premium\\par
+}`;
+
+                const blob = new Blob([rtfContent], {
+                    type: 'application/rtf'
                 });
 
-                const filename = `${ex.exercise.title.replace(/[^a-z0-9]/gi, '-')}_${dateStr.replace(/\s/g, '-')}.docx`;
+                const filename = `${ex.exercise.title.replace(/[^a-z0-9]/gi, '-')}_${dateStr.replace(/\s/g, '-')}.rtf`;
 
                 await downloadOrShareFile(blob, filename, 'Esporta Word Esercizio');
 
@@ -9020,13 +9056,54 @@ Generato con Soundscape Studio Premium
 Professional Field Recording & Composition Toolkit
 `;
 
-                // Create HTML version for better formatting
-                const htmlContent = content.replace(/\n/g, '<br>').replace(/  /g, '&nbsp;&nbsp;');
-                const blob = new Blob([`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Arial,sans-serif;margin:40px;line-height:1.6;}</style></head><body><pre style="white-space:pre-wrap;font-family:Arial;">${htmlContent}</pre></body></html>`], {
-                    type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                // Create RTF format (compatible with Pages, Word, TextEdit)
+                let rtfContent = `{\\rtf1\\ansi\\deff0
+{\\fonttbl{\\f0\\fswiss\\fcharset0 Arial;}}
+{\\colortbl;\\red47\\green95\\blue79;}
+\\viewkind4\\uc1\\pard\\cf1\\f0\\fs28\\b SOUNDSCAPE STUDIO - REPORT ESERCIZI\\b0\\fs22\\par
+\\par
+\\cf0 Generato il: ${new Date().toLocaleDateString('it-IT')}\\par
+Totale esercizi: ${exercises.length}\\par
+\\par
+================================================================================\\par
+\\par
+`;
+
+                exercises.forEach((ex, index) => {
+                    const date = new Date(ex.timestamp).toLocaleDateString('it-IT');
+                    const title = ex.exercise.title.replace(/[\\{}]/g, '');
+                    const category = (ex.exercise.category || 'N/A').replace(/[\\{}]/g, '');
+                    const difficulty = (ex.exercise.difficulty || 'N/A').replace(/[\\{}]/g, '');
+                    const location = ex.locationName ? ex.locationName.replace(/[\\{}]/g, '') : '';
+                    const notes = ex.notes ? ex.notes.replace(/[\\{}]/g, '').replace(/\n/g, '\\par ') : '';
+
+                    rtfContent += `\\b ${index + 1}. ${title}\\b0\\par
+----------------------------------------\\par
+Data: ${date}\\par
+Categoria: ${category}\\par
+Difficolta: ${difficulty}\\par
+${location ? `Luogo: ${location}\\par` : ''}
+${ex.locationCoords ? `Coordinate: ${ex.locationCoords.lat}, ${ex.locationCoords.lon}\\par` : ''}
+\\par
+${notes ? `NOTE:\\par ${notes}\\par\\par` : ''}
+${ex.audioFiles && ex.audioFiles.length > 0 ? `${ex.audioFiles.length} file audio registrati\\par` : ''}
+${ex.photoFiles && ex.photoFiles.length > 0 ? `${ex.photoFiles.length} foto allegate\\par` : ''}
+\\par
+================================================================================\\par
+\\par
+`;
                 });
 
-                const filename = `soundscape-report-${new Date().toISOString().split('T')[0]}.docx`;
+                rtfContent += `\\par
+Generato con Soundscape Studio Premium\\par
+Professional Field Recording & Composition Toolkit\\par
+}`;
+
+                const blob = new Blob([rtfContent], {
+                    type: 'application/rtf'
+                });
+
+                const filename = `soundscape-report-${new Date().toISOString().split('T')[0]}.rtf`;
 
                 await downloadOrShareFile(blob, filename, 'Esporta Report Word');
 
@@ -9241,31 +9318,50 @@ Numero file audio: ${ex.audioFiles.length}
                     for (let i = 0; i < ex.audioFiles.length; i++) {
                         const audioBlob = ex.audioFiles[i];
 
-                        // Validate that audioBlob is actually a Blob
-                        if (!audioBlob || !(audioBlob instanceof Blob)) {
-                            console.warn(`⚠️ Skipping invalid audio ${i + 1}: not a Blob`);
+                        // Validate that audioBlob exists and has data
+                        if (!audioBlob) {
+                            console.warn(`⚠️ Skipping audio ${i + 1}: null or undefined`);
+                            continue;
+                        }
+
+                        // Check if it's a Blob or Blob-like object (has size and type properties)
+                        if (!(audioBlob instanceof Blob) && (!audioBlob.size || audioBlob.size === undefined)) {
+                            console.warn(`⚠️ Skipping audio ${i + 1}: not a Blob and no size property`);
+                            console.log('Audio object:', audioBlob);
                             continue;
                         }
 
                         // Skip empty blobs
                         if (audioBlob.size === 0) {
-                            console.warn(`⚠️ Skipping empty audio ${i + 1}`);
+                            console.warn(`⚠️ Skipping audio ${i + 1}: empty (0 bytes)`);
                             continue;
                         }
 
-                        // Get file extension from blob type
-                        const fileExt = audioBlob.type === 'audio/webm' ? 'webm' :
-                                       audioBlob.type === 'audio/wav' ? 'wav' :
-                                       audioBlob.type === 'audio/mp4' ? 'm4a' : 'webm';
+                        // If it's not a Blob but has data, try to convert it
+                        let finalBlob = audioBlob;
+                        if (!(audioBlob instanceof Blob)) {
+                            console.log(`🔄 Converting audio ${i + 1} to Blob...`);
+                            try {
+                                finalBlob = new Blob([audioBlob], { type: audioBlob.type || 'audio/webm' });
+                            } catch (convErr) {
+                                console.warn(`⚠️ Failed to convert audio ${i + 1} to Blob:`, convErr);
+                                continue;
+                            }
+                        }
 
-                        console.log(`Adding exercise audio ${i + 1}/${ex.audioFiles.length} (${fileExt}, ${(audioBlob.size / 1024).toFixed(1)} KB)...`);
+                        // Get file extension from blob type
+                        const fileExt = finalBlob.type === 'audio/webm' ? 'webm' :
+                                       finalBlob.type === 'audio/wav' ? 'wav' :
+                                       finalBlob.type === 'audio/mp4' ? 'm4a' : 'webm';
+
+                        console.log(`Adding exercise audio ${i + 1}/${ex.audioFiles.length} (${fileExt}, ${(finalBlob.size / 1024).toFixed(1)} KB)...`);
 
                         // Convert Blob to ArrayBuffer using FileReader (compatible with all browsers)
                         const arrayBuffer = await new Promise((resolve, reject) => {
                             const reader = new FileReader();
                             reader.onload = () => resolve(reader.result);
                             reader.onerror = reject;
-                            reader.readAsArrayBuffer(audioBlob);
+                            reader.readAsArrayBuffer(finalBlob);
                         });
                         zip.file(`${folderName}/audio-${i + 1}.${fileExt}`, arrayBuffer);
                         totalAudioCount++;
@@ -9294,31 +9390,50 @@ Note: ${marker.notes || 'Nessuna nota'}
 `;
                     zip.file(`${folderName}/Info.txt`, info);
 
-                    // Validate that audioBlob is actually a Blob
-                    if (!audioBlob || !(audioBlob instanceof Blob)) {
-                        console.warn(`⚠️ Skipping invalid marker audio ${i + 1}: not a Blob`);
+                    // Validate that audioBlob exists and has data
+                    if (!audioBlob) {
+                        console.warn(`⚠️ Skipping marker audio ${i + 1}: null or undefined`);
+                        continue;
+                    }
+
+                    // Check if it's a Blob or Blob-like object
+                    if (!(audioBlob instanceof Blob) && (!audioBlob.size || audioBlob.size === undefined)) {
+                        console.warn(`⚠️ Skipping marker audio ${i + 1}: not a Blob and no size property`);
+                        console.log('Marker audio object:', audioBlob);
                         continue;
                     }
 
                     // Skip empty blobs
                     if (audioBlob.size === 0) {
-                        console.warn(`⚠️ Skipping empty marker audio ${i + 1}`);
+                        console.warn(`⚠️ Skipping marker audio ${i + 1}: empty (0 bytes)`);
                         continue;
                     }
 
-                    // Add audio in original format (no conversion)
-                    const fileExt = audioBlob.type === 'audio/webm' ? 'webm' :
-                                   audioBlob.type === 'audio/wav' ? 'wav' :
-                                   audioBlob.type === 'audio/mp4' ? 'm4a' : 'webm';
+                    // If it's not a Blob but has data, try to convert it
+                    let finalBlob = audioBlob;
+                    if (!(audioBlob instanceof Blob)) {
+                        console.log(`🔄 Converting marker audio ${i + 1} to Blob...`);
+                        try {
+                            finalBlob = new Blob([audioBlob], { type: audioBlob.type || 'audio/webm' });
+                        } catch (convErr) {
+                            console.warn(`⚠️ Failed to convert marker audio ${i + 1} to Blob:`, convErr);
+                            continue;
+                        }
+                    }
 
-                    console.log(`Adding marker audio ${i + 1}/${markersWithAudio.length} (${fileExt}, ${(audioBlob.size / 1024).toFixed(1)} KB)...`);
+                    // Add audio in original format (no conversion)
+                    const fileExt = finalBlob.type === 'audio/webm' ? 'webm' :
+                                   finalBlob.type === 'audio/wav' ? 'wav' :
+                                   finalBlob.type === 'audio/mp4' ? 'm4a' : 'webm';
+
+                    console.log(`Adding marker audio ${i + 1}/${markersWithAudio.length} (${fileExt}, ${(finalBlob.size / 1024).toFixed(1)} KB)...`);
 
                     // Convert Blob to ArrayBuffer using FileReader (compatible with all browsers)
                     const arrayBuffer = await new Promise((resolve, reject) => {
                         const reader = new FileReader();
                         reader.onload = () => resolve(reader.result);
                         reader.onerror = reject;
-                        reader.readAsArrayBuffer(audioBlob);
+                        reader.readAsArrayBuffer(finalBlob);
                     });
                     zip.file(`${folderName}/audio-${markerIdStr.substring(0, 8)}.${fileExt}`, arrayBuffer);
                     totalAudioCount++;
