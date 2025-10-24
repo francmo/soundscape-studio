@@ -10141,23 +10141,62 @@ Note: ${marker.notes || 'Nessuna nota'}
         </div>
     </div>
 
-    <!-- WhatsApp/Facebook Share Script - Using Open Graph preview -->
+    <!-- WhatsApp/Facebook Share Script - Complete solution with emoji support -->
     <script>
-    // Soluzione Open Graph: condividi solo il link, WhatsApp/Facebook mostrano il preview con emoji dai meta tags
-    function shareApp(platform) {
-        const shareUrl = 'https://soundscape-project-studio.netlify.app';
-        let url = '';
+    // Soluzione completa: Web Share API + fallback per emoji sia nel messaggio che nell'anteprima
+    async function shareApp(platform) {
+        const shareMessage = `🎵 SOUNDSCAPE STUDIO - Aggiornamento Importante! 🎵
 
-        if (platform === 'whatsapp') {
-            // WhatsApp: passa solo l'URL, il preview viene dai meta tag og:
-            url = `https://wa.me/?text=${encodeURIComponent(shareUrl)}`;
-        } else if (platform === 'facebook') {
-            // Facebook: usa solo il parametro u (URL), il resto viene dai meta tag og:
-            url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+• 📊 Export professionali (Excel, Word, PDF)
+• 🗺️ Export GIS (KML, GeoJSON, CSV)
+• 💾 Backup completo illimitato
+• 🎵 Export archivio audio ZIP
+• ⭐ Markers illimitati
+
+🔗 Accedi ora:
+🇮🇹 https://soundscape-project-studio.netlify.app
+🇬🇧 https://soundscape-studio-eng.netlify.app
+
+💡 Usa dal browser, App iOS/Android in arrivo!
+🙏 Aiutami a migliorare: testa l'app!`;
+
+        const shareUrl = 'https://soundscape-project-studio.netlify.app';
+        const shareTitle = '🎧 Soundscape Studio';
+
+        // SOLUZIONE 1: Web Share API (nativa per PWA/Mobile) - emoji perfetti sia nel testo che nell'anteprima
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: shareTitle,
+                    text: shareMessage, // Testo CON emoji mostrato sopra il box
+                    url: shareUrl // URL per generare l'anteprima dai meta tag og:
+                });
+                console.log('✅ Condivisione riuscita tramite Web Share API');
+                return;
+            } catch (err) {
+                if (err.name === 'AbortError') {
+                    console.log('ℹ️ Condivisione annullata dall\'utente');
+                    return;
+                } else {
+                    console.error('❌ Errore Web Share API:', err);
+                    // Continua con fallback
+                }
+            }
         }
 
-        if (url) {
-            window.open(url, '_blank', 'noopener,noreferrer');
+        // SOLUZIONE 2: Fallback wa.me con encodeURIComponent (per desktop)
+        const encodedMessage = encodeURIComponent(shareMessage);
+        let fallbackUrl = '';
+
+        if (platform === 'whatsapp') {
+            fallbackUrl = `https://wa.me/?text=${encodedMessage}`;
+        } else if (platform === 'facebook') {
+            const encodedUrl = encodeURIComponent(shareUrl);
+            fallbackUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedMessage}`;
+        }
+
+        if (fallbackUrl) {
+            window.open(fallbackUrl, '_blank', 'noopener,noreferrer');
         }
     }
 
