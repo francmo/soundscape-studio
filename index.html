@@ -2063,11 +2063,157 @@
             <div class="card" style="margin-bottom: 20px;">
                 <h4 style="color: #2d5f4f; margin-bottom: 15px;">🎧 Seleziona Audio</h4>
                 <select id="spectrogramAudioSelector" style="width: 100%; padding: 10px; border-radius: 6px; border: 2px solid #e0e0e0; margin-bottom: 15px; font-size: 14px;">
-                    <option value="">Nessun audio disponibile</option>
+                    <option value="">-- Seleziona un audio --</option>
                 </select>
-                <p id="spectrogramNoAudio" style="color: #999; font-style: italic; font-size: 14px; display: none;">
-                    Non hai ancora salvato audio. Completa un esercizio o aggiungi un marker con audio per visualizzarlo qui.
-                </p>
+                <div id="spectrogramNoAudio" style="background: #f0f7f4; padding: 15px; border-radius: 8px; border-left: 4px solid #4a9d7f; display: none;">
+                    <p style="color: #2d5f4f; font-weight: 600; margin-bottom: 8px;">📝 Nessun audio salvato</p>
+                    <p style="color: #666; font-size: 13px; margin: 0;">
+                        Per utilizzare questa sezione, devi prima salvare degli audio:<br>
+                        • Vai in <strong>🔔 Soundscape Exercises</strong> e completa un esercizio con registrazione<br>
+                        • Oppure vai in <strong>🗺️ Soundscape Map</strong> e aggiungi un marker con audio
+                    </p>
+                </div>
+            </div>
+
+            <!-- Guida: Come leggere lo Spettrogramma -->
+            <div class="card" style="background: linear-gradient(135deg, #f8f9f5 0%, #e8f5f1 100%); margin-bottom: 20px; border-left: 4px solid #2d5f4f;">
+                <h3 style="color: #2d5f4f; margin-bottom: 15px; font-size: 18px;">📚 Come Leggere lo Spettrogramma</h3>
+
+                <div style="margin-bottom: 20px;">
+                    <h4 style="color: #4a9d7f; margin-bottom: 10px; font-size: 16px;">🎯 Cos'è uno Spettrogramma?</h4>
+                    <p style="color: #666; font-size: 14px; line-height: 1.6; margin: 0;">
+                        Lo spettrogramma è una rappresentazione visiva del contenuto in frequenza di un segnale audio nel tempo.
+                        Mostra quali frequenze sono presenti in ogni momento della registrazione e con quale intensità.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4 style="color: #4a9d7f; margin-bottom: 10px; font-size: 16px;">📊 Come si legge?</h4>
+                    <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 12px;">
+                        <ul style="color: #666; font-size: 14px; line-height: 1.8; margin: 0; padding-left: 20px;">
+                            <li><strong>Asse Orizzontale (Tempo):</strong> L'audio scorre da destra a sinistra nel tempo</li>
+                            <li><strong>Asse Verticale (Frequenza):</strong> Le frequenze basse (20 Hz) stanno in basso, le alte (10 kHz) in alto</li>
+                            <li><strong>Colori (Intensità):</strong>
+                                <span style="display: inline-block; width: 12px; height: 12px; background: #0000ff; border-radius: 2px; margin: 0 4px;"></span> Blu = Silenzio,
+                                <span style="display: inline-block; width: 12px; height: 12px; background: #00ffff; border-radius: 2px; margin: 0 4px;"></span> Ciano = Debole,
+                                <span style="display: inline-block; width: 12px; height: 12px; background: #00ff00; border-radius: 2px; margin: 0 4px;"></span> Verde = Medio,
+                                <span style="display: inline-block; width: 12px; height: 12px; background: #ffff00; border-radius: 2px; margin: 0 4px;"></span> Giallo = Forte,
+                                <span style="display: inline-block; width: 12px; height: 12px; background: #ff0000; border-radius: 2px; margin: 0 4px;"></span> Rosso = Molto Forte
+                            </li>
+                            <li><strong>Range: 20 Hz - 10 kHz</strong> copre la maggior parte dei suoni udibili umani</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h4 style="color: #4a9d7f; margin-bottom: 10px; font-size: 16px;">🔍 Spettri Caratteristici</h4>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
+                        <!-- Voce Umana -->
+                        <div style="background: white; padding: 12px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                <span style="font-size: 24px; margin-right: 8px;">🗣️</span>
+                                <strong style="color: #2d5f4f;">Voce Umana</strong>
+                            </div>
+                            <p style="color: #666; font-size: 13px; margin: 0; line-height: 1.5;">
+                                <strong>200-3000 Hz</strong> - Bande orizzontali concentrate tra 200-300 Hz (voce maschile) o 300-500 Hz (voce femminile).
+                                Formanti visibili come righe orizzontali multiple. Modulazione continua.
+                            </p>
+                        </div>
+
+                        <!-- Traffico Urbano -->
+                        <div style="background: white; padding: 12px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                <span style="font-size: 24px; margin-right: 8px;">🚗</span>
+                                <strong style="color: #2d5f4f;">Traffico Urbano</strong>
+                            </div>
+                            <p style="color: #666; font-size: 13px; margin: 0; line-height: 1.5;">
+                                <strong>50-1000 Hz</strong> - Energia concentrata nelle basse frequenze (motori).
+                                Pattern continuo irregolare. Picchi occasionali 2-4 kHz (clacson, freni).
+                            </p>
+                        </div>
+
+                        <!-- Uccelli -->
+                        <div style="background: white; padding: 12px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                <span style="font-size: 24px; margin-right: 8px;">🐦</span>
+                                <strong style="color: #2d5f4f;">Canto Uccelli</strong>
+                            </div>
+                            <p style="color: #666; font-size: 13px; margin: 0; line-height: 1.5;">
+                                <strong>2000-8000 Hz</strong> - Linee curve e ondulate nelle alte frequenze.
+                                Pattern ripetitivi con pause. Molto definiti e puliti, separati dal rumore di fondo.
+                            </p>
+                        </div>
+
+                        <!-- Acqua -->
+                        <div style="background: white; padding: 12px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                <span style="font-size: 24px; margin-right: 8px;">🌊</span>
+                                <strong style="color: #2d5f4f;">Acqua/Onde</strong>
+                            </div>
+                            <p style="color: #666; font-size: 13px; margin: 0; line-height: 1.5;">
+                                <strong>200-6000 Hz</strong> - Rumore bianco distribuito uniformemente.
+                                Pattern continuo senza picchi definiti. Intensità variabile ciclica (onde).
+                            </p>
+                        </div>
+
+                        <!-- Strumenti Musicali -->
+                        <div style="background: white; padding: 12px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                <span style="font-size: 24px; margin-right: 8px;">🎸</span>
+                                <strong style="color: #2d5f4f;">Strumenti Musicali</strong>
+                            </div>
+                            <p style="color: #666; font-size: 13px; margin: 0; line-height: 1.5;">
+                                <strong>Variabile</strong> - Righe orizzontali parallele (armonici).
+                                Nota fondamentale + multipli (2x, 3x, 4x frequenza). Pattern regolare e stabile.
+                            </p>
+                        </div>
+
+                        <!-- Vento -->
+                        <div style="background: white; padding: 12px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                <span style="font-size: 24px; margin-right: 8px;">💨</span>
+                                <strong style="color: #2d5f4f;">Vento</strong>
+                            </div>
+                            <p style="color: #666; font-size: 13px; margin: 0; line-height: 1.5;">
+                                <strong>50-2000 Hz</strong> - Rumore a banda larga nelle basse frequenze.
+                                Pattern molto irregolare e turbolento. Intensità fluttuante, senza forma definita.
+                            </p>
+                        </div>
+
+                        <!-- Fischio -->
+                        <div style="background: white; padding: 12px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                <span style="font-size: 24px; margin-right: 8px;">🎵</span>
+                                <strong style="color: #2d5f4f;">Fischio/Tono Puro</strong>
+                            </div>
+                            <p style="color: #666; font-size: 13px; margin: 0; line-height: 1.5;">
+                                <strong>Frequenza specifica</strong> - Linea orizzontale singola molto netta.
+                                Colore intenso (rosso/giallo). Frequenza costante o glissando (linea obliqua).
+                            </p>
+                        </div>
+
+                        <!-- Industria -->
+                        <div style="background: white; padding: 12px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                <span style="font-size: 24px; margin-right: 8px;">🏭</span>
+                                <strong style="color: #2d5f4f;">Rumore Industriale</strong>
+                            </div>
+                            <p style="color: #666; font-size: 13px; margin: 0; line-height: 1.5;">
+                                <strong>100-4000 Hz</strong> - Pattern molto denso con picchi a frequenze specifiche (macchinari).
+                                Componente continua + impulsi periodici. Armonici dei motori visibili.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #fffbe6; padding: 15px; border-radius: 8px; border-left: 4px solid #f4a261;">
+                    <p style="color: #2d5f4f; font-weight: 600; margin-bottom: 8px;">💡 Suggerimento per l'analisi</p>
+                    <p style="color: #666; font-size: 13px; margin: 0; line-height: 1.6;">
+                        Osserva il <strong>Peak Frequency</strong> visualizzato in alto a destra: ti indica quale frequenza è dominante in ogni momento.
+                        Confronta questa informazione con i pattern visivi per identificare le sorgenti sonore nel tuo soundscape!
+                    </p>
+                </div>
             </div>
 
             <!-- Spectrogram Visualizer -->
